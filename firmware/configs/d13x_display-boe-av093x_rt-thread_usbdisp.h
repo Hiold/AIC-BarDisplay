@@ -21,6 +21,7 @@
 /* Application options */
 
 #define APP_USB_DISP
+#define UDISP_USE_LVGL_TEST
 
 /* Filesystem related */
 

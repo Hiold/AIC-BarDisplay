@@ -2064,42 +2064,6 @@
       "cpppath": []
     },
     {
-      "source": "${ROOT}/application/rt-thread/usbdisp/settings.c",
-      "defines": [],
-      "cflags": "",
-      "cpppath": []
-    },
-    {
-      "source": "${ROOT}/application/rt-thread/usbdisp/simhei_30.c",
-      "defines": [],
-      "cflags": "",
-      "cpppath": []
-    },
-    {
-      "source": "${ROOT}/application/rt-thread/usbdisp/simhei_50.c",
-      "defines": [],
-      "cflags": "",
-      "cpppath": []
-    },
-    {
-      "source": "${ROOT}/application/rt-thread/usbdisp/transport.c",
-      "defines": [],
-      "cflags": "",
-      "cpppath": []
-    },
-    {
-      "source": "${ROOT}/application/rt-thread/usbdisp/ui.c",
-      "defines": [],
-      "cflags": "",
-      "cpppath": []
-    },
-    {
-      "source": "${ROOT}/application/rt-thread/usbdisp/video.c",
-      "defines": [],
-      "cflags": "",
-      "cpppath": []
-    },
-    {
       "source": "${ROOT}/kernel/rt-thread/components/utilities/ulog/ulog.c",
       "defines": [],
       "cflags": "",

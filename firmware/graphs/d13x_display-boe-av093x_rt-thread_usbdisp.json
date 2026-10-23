@@ -2088,49 +2088,13 @@
       "cpppath": []
     },
     {
-      "source": "${ROOT}/application/rt-thread/usbdisp/display.c",
+      "source": "${ROOT}/application/rt-thread/usbdisp/lvdisp.c",
       "defines": [],
       "cflags": "",
       "cpppath": []
     },
     {
       "source": "${ROOT}/application/rt-thread/usbdisp/main.c",
-      "defines": [],
-      "cflags": "",
-      "cpppath": []
-    },
-    {
-      "source": "${ROOT}/application/rt-thread/usbdisp/settings.c",
-      "defines": [],
-      "cflags": "",
-      "cpppath": []
-    },
-    {
-      "source": "${ROOT}/application/rt-thread/usbdisp/simhei_30.c",
-      "defines": [],
-      "cflags": "",
-      "cpppath": []
-    },
-    {
-      "source": "${ROOT}/application/rt-thread/usbdisp/simhei_50.c",
-      "defines": [],
-      "cflags": "",
-      "cpppath": []
-    },
-    {
-      "source": "${ROOT}/application/rt-thread/usbdisp/transport.c",
-      "defines": [],
-      "cflags": "",
-      "cpppath": []
-    },
-    {
-      "source": "${ROOT}/application/rt-thread/usbdisp/ui.c",
-      "defines": [],
-      "cflags": "",
-      "cpppath": []
-    },
-    {
-      "source": "${ROOT}/application/rt-thread/usbdisp/video.c",
       "defines": [],
       "cflags": "",
       "cpppath": []

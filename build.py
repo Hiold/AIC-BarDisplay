@@ -212,9 +212,9 @@ def verify_image(image_path, out, variant):
         if components[name] != (out / file).read_bytes():
             raise ValueError('Image component mismatch: ' + name)
     with tempfile.TemporaryDirectory(prefix='udisp-check-') as temp:
-        run([TOOLS / 'mcopy.exe', '-i', out / 'rodata.fatfs', '::/video/video.bin', 'video.bin'], cwd=temp)
-        if sha(pathlib.Path(temp) / 'video.bin') != sha(ROOT / variant_assets(variant) / 'video/video.bin'):
-            raise ValueError('Packaged idle video mismatch')
+        run([TOOLS / 'mcopy.exe', '-i', out / 'rodata.fatfs', '::/orientation_test.jpg', 'orientation_test.jpg'], cwd=temp)
+        if sha(pathlib.Path(temp) / 'orientation_test.jpg') != sha(ROOT / variant_assets(variant) / 'orientation_test.jpg'):
+            raise ValueError('Packaged orientation pattern mismatch')
     cfg = json.loads((out / 'image_cfg.json').read_text())['spi-nor']
     sizes = {'k': 1024, 'm': 1048576}
     total = sum(int(p['size'][:-1]) * sizes[p['size'][-1]] for p in cfg['partitions'].values())
