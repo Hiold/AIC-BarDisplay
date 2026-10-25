@@ -3,7 +3,7 @@
 #define USB_DISP_LVGL_H
 
 /* Initialise LVGL and build the orientation / boundary test screen on the UI
- * layer. Called once after the rodata filesystem is mounted. */
+ * layer. */
 int udisp_lvgl_init(void);
 
 /* Run the LVGL task loop forever. Never returns. */

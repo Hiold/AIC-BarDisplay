@@ -23,17 +23,6 @@
 #define APP_USB_DISP
 #define UDISP_USE_LVGL_TEST
 
-/* Filesystem related */
-
-#define AIC_USING_FS_IMAGE_0
-#define AIC_USING_FS_IMAGE_TYPE_FATFS_FOR_0
-#define AIC_FS_IMAGE_DIR_0 "application/rt-thread/usbdisp/assets"
-#define AIC_FS_IMAGE_NAME_0 "rodata.fatfs"
-#define AIC_FATFS_AUTO_SIZE_FOR_0
-#define AIC_FATFS_DEFAULT_VOLAB_0
-#define AIC_USING_FS_IMAGE_TYPE_FATFS_CLUSTER_SIZE 8
-#define AIC_USING_DIRENT_CACHE_FOR_READ_ONLY_FATFS
-
 /* LVGL demo select related */
 
 #define LPKG_USING_LVGL
@@ -42,7 +31,7 @@
 #define LPKG_LVGL_THREAD_PRIO 20
 #define LPKG_LVGL_THREAD_STACK_SIZE 12288
 #define LPKG_LVGL_DISP_REFR_PERIOD 5
-#define LVGL_STORAGE_PATH "/rodata/lvgl_data"
+#define LVGL_STORAGE_PATH "/sdcard"
 /* end of Application options */
 
 /* Chip options */
@@ -221,7 +210,7 @@
 #define AICFB_RGB888
 #define AICFB_FORMAT 0x08
 #define AIC_DISP_BOOTUP_LOGO
-#define AIC_DISP_COLOR_BLOCK
+#define AIC_DISP_BLACK_SCREEN
 #define AICFB_ROTATE_0
 #define AIC_FB_ROTATE_DEGREE 0
 

@@ -175,10 +175,11 @@ def pack(variant_id, variant, out, config, boot_out):
     shutil.copy2(pbp_cfg, out / 'pbp_cfg.json')
     for file in (ROOT / 'bsp/artinchip/sys' / chip).glob('*.pbp'):
         shutil.copy2(file, out / file.name)
-    assets_dir = variant_assets(variant)
-    helper('makefatfs.py', '--fullpart', '--volab', 'default', '--cluster', '8', '--sector', '512',
-           '--tooldir', str(TOOLS) + '/', '--inputdir', assets_dir,
-           '--outfile', out / 'rodata.fatfs', '--reserved', '50')
+    if 'rodata' in cfg['image'].get('target', {}):
+        assets_dir = variant_assets(variant)
+        helper('makefatfs.py', '--fullpart', '--volab', 'default', '--cluster', '8', '--sector', '512',
+               '--tooldir', str(TOOLS) + '/', '--inputdir', assets_dir,
+               '--outfile', out / 'rodata.fatfs', '--reserved', '50')
     helper('mk_private_resource.py', '-l', str(out / 'pbp_cfg.json') + ',' + str(out / 'partition.json'),
            '-o', out / 'pbp_cfg.bin')
     if chip == 'd12p':
@@ -208,13 +209,16 @@ def verify_image(image_path, out, variant):
             if offset + size > len(image):
                 raise ValueError('Invalid image extent')
             components[name] = image[offset:offset+size]
-    for name, file in [('image.target.rodata', 'rodata.fatfs'), ('image.target.spl', 'bootloader.aic')]:
+    for name, file in [('image.target.spl', 'bootloader.aic')]:
         if components[name] != (out / file).read_bytes():
             raise ValueError('Image component mismatch: ' + name)
-    with tempfile.TemporaryDirectory(prefix='udisp-check-') as temp:
-        run([TOOLS / 'mcopy.exe', '-i', out / 'rodata.fatfs', '::/orientation_test.jpg', 'orientation_test.jpg'], cwd=temp)
-        if sha(pathlib.Path(temp) / 'orientation_test.jpg') != sha(ROOT / variant_assets(variant) / 'orientation_test.jpg'):
-            raise ValueError('Packaged orientation pattern mismatch')
+    if 'image.target.rodata' in components:
+        if components['image.target.rodata'] != (out / 'rodata.fatfs').read_bytes():
+            raise ValueError('Image component mismatch: image.target.rodata')
+        with tempfile.TemporaryDirectory(prefix='udisp-check-') as temp:
+            run([TOOLS / 'mcopy.exe', '-i', out / 'rodata.fatfs', '::/orientation_test.jpg', 'orientation_test.jpg'], cwd=temp)
+            if sha(pathlib.Path(temp) / 'orientation_test.jpg') != sha(ROOT / variant_assets(variant) / 'orientation_test.jpg'):
+                raise ValueError('Packaged orientation pattern mismatch')
     cfg = json.loads((out / 'image_cfg.json').read_text())['spi-nor']
     sizes = {'k': 1024, 'm': 1048576}
     total = sum(int(p['size'][:-1]) * sizes[p['size'][-1]] for p in cfg['partitions'].values())

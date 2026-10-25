@@ -14,9 +14,6 @@
             "os": {
                 "size": "3m"
             },
-            "rodata": {
-                "size": "27m"
-            },
             "data": {
                 "size": "1m"
             }
@@ -89,16 +86,6 @@
                 ],
                 "part": [
                     "os"
-                ]
-            },
-            "rodata": {
-                "file": "rodata.fatfs",
-                "attr": [
-                    "mtd",
-                    "optional"
-                ],
-                "part": [
-                    "rodata"
                 ]
             },
             "data": {

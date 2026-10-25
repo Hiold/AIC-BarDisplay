@@ -248,7 +248,6 @@
     "version": "1.0.0",
     "fps": 60,
     "jpeg_quality": 6,
-    "assets_dir": "application/rt-thread/usbdisp/assets_av093x",
     "timing": {
       "width": 320,
       "height": 1280,

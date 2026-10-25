@@ -160,20 +160,22 @@ int aic_get_os_to_startup(char *target_os)
     printf("rodataAB_next = %s\n", next);
     printf("rodataAB_now = %s\n", now);
 #endif
-    if (strncmp(next, "A", 2) == 0) {
-        if (strncmp(next, now, 2) != 0)
-            ret = fw_env_write("rodataAB_now", "A");
-    } else if (strncmp(next, "B", 2) == 0) {
-        if (strncmp(next, now, 2) != 0)
-            ret = fw_env_write("rodataAB_now", "B");
-    } else {
-        ret = -1;
-        pr_err("Invalid rodataAB_next\n");
-    }
+    if (next) {
+        if (strncmp(next, "A", 2) == 0) {
+            if (strncmp(next, now, 2) != 0)
+                ret = fw_env_write("rodataAB_now", "A");
+        } else if (strncmp(next, "B", 2) == 0) {
+            if (strncmp(next, now, 2) != 0)
+                ret = fw_env_write("rodataAB_now", "B");
+        } else {
+            ret = -1;
+            pr_err("Invalid rodataAB_next\n");
+        }
 
-    if (ret) {
-        pr_err("rodataAB_now write fail\n");
-        goto err_write_next_os;
+        if (ret) {
+            pr_err("rodataAB_now write fail\n");
+            goto err_write_next_os;
+        }
     }
 
     next = fw_getenv("dataAB_next");
