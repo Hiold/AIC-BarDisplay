@@ -109,13 +109,13 @@ static int panel_enable(struct aic_panel *panel)
     aic_delay_ms(250);
 
     /*
-     * This panel renders inverted with the stock FL7707N/BOE11.26 sequence:
-     * an all-black framebuffer came up white until DCS ENTER_INVERT_MODE was
-     * sent. Verified on hardware via `dispdbg cmd 0x21`, after which black
-     * displayed as black and white as white. Send 0x20 instead if a future
-     * panel revision comes up with correct polarity.
+     * Polarity verified on hardware (CDC debug firmware, 2026): this panel
+     * revision comes up with correct polarity, so ENTER_INVERT_MODE (0x21)
+     * displayed everything inverted (white->black, black->white). Sending
+     * EXIT_INVERT_MODE (0x20) made it correct. Keep 0x20 so default polarity
+     * is right on power-up without a manual DCS command.
      */
-    panel_dsi_dcs_send_seq(panel, 0x21);
+    panel_dsi_dcs_send_seq(panel, 0x20);
 
     ret = panel_dsi_dcs_set_display_on(panel);
     if (ret < 0) {
