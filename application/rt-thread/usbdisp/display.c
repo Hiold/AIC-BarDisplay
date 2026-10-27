@@ -43,6 +43,7 @@ static struct packet_allocator allocator = {.ops=&ops};
 int udisp_decoder_open(void)
 {
     struct decode_config config = {0};
+    int rotmir = 0;
     if (decoder) return 0;
     decoder = mpp_decoder_create(MPP_CODEC_VIDEO_DECODER_MJPEG);
     if (!decoder) return -1;
@@ -55,6 +56,18 @@ int udisp_decoder_open(void)
      * PSRAM CMA for the framebuffer and both NV12 surfaces. */
     config.extra_frame_num = 1;
     mpp_decoder_control(decoder, MPP_DEC_INIT_CMD_SET_EXT_PACKET_ALLOCATOR, &allocator);
+    /* Landscape (横屏) display, memory-safe path: the panel scanout stays
+     * physically portrait (no AIC_FB_ROTATE_EN, so the framebuffer is NOT
+     * tripled), but the host / idle video deliver landscape JPEG frames
+     * (long axis horizontal, width > height).  The VE JPEG decoder performs
+     * the 90-degree rotation while decoding, writing a portrait NV12 surface
+     * that fills the portrait panel full screen.  The USB capability string /
+     * HID / RX header validation report the landscape dimensions (swapped)
+     * so the host sends landscape frames. */
+#ifdef AIC_USB_DISP_ROTATION_FULLSCREEN
+    rotmir = MPP_ROTATION_90;
+    mpp_decoder_control(decoder, MPP_DEC_INIT_CMD_SET_ROT_FLIP_FLAG, &rotmir);
+#endif
     if (mpp_decoder_init(decoder, &config)) {
         mpp_decoder_destory(decoder); decoder = NULL;
         return -1;

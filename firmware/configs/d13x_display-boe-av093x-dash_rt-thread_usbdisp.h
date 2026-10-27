@@ -20,6 +20,8 @@
 
 /* Application options */
 
+#define AIC_USB_DISP_ROTATION_FULLSCREEN 1
+
 #define APP_DASHDISP
 
 /* Filesystem related */

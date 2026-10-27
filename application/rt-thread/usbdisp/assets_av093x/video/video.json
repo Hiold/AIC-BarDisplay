@@ -10,18 +10,24 @@
     "progressive": false,
     "bytes": 25908703
   },
-  "width": 320,
-  "height": 1280,
+  "width": 1280,
+  "height": 320,
   "fps": "30",
   "frames": 602,
   "quality": 33,
   "subsampling": "4:2:0",
   "progressive": false,
-  "crop": {
-    "x": 80,
-    "y": 320
-  },
+  "rotate": 90,
+  "orientation": "landscape",
   "budget": 12620366,
-  "bytes": 12620366,
-  "max_frame_bytes": 22547
+  "bytes": 12511923,
+  "max_frame_bytes": 22319,
+  "rebuild": {
+    "tool": "tools/video_rebuild/rebuild.py",
+    "out": [
+      1280,
+      320
+    ],
+    "rotate": 90
+  }
 }

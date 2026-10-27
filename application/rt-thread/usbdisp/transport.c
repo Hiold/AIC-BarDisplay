@@ -60,7 +60,14 @@ static void build_hid_report(void)
 {
     /* Five fingers, ten bytes each, followed by contact count. */
     static const uint8_t head[] = {0x05,0x0d,0x09,0x04,0xa1,0x01,0x85,0x01};
+    /* Report the dimensions the host exchanges frames at.  In landscape
+     * (横屏) mode these are swapped: the host sends width>height frames even
+     * though the physical panel scanout is portrait. */
     uint16_t width = udisp_screen.width, height = udisp_screen.height;
+#ifdef AIC_USB_DISP_ROTATION_FULLSCREEN
+    width = udisp_screen.height;
+    height = udisp_screen.width;
+#endif
     const uint8_t finger[] = {
         0x09,0x42,0xa1,0x02,0x09,0x42,0x15,0,0x25,1,
         0x75,1,0x95,1,0x81,2,0x95,7,0x81,3,
@@ -104,9 +111,15 @@ static void build_descriptors(void)
     uint8_t *p = descriptor;
     memcpy(p, base, sizeof(base)); p += sizeof(base);
     /* The open IDD interprets Bl in KiB, not bytes. Round down so the host
-     * never encodes a frame larger than the allocated RX buffer. */
+     * never encodes a frame larger than the allocated RX buffer.  R<WxH>
+     * declares the landscape (rotated) exchange resolution in 横屏 mode. */
+    unsigned cap_w = udisp_screen.width, cap_h = udisp_screen.height;
+#ifdef AIC_USB_DISP_ROTATION_FULLSCREEN
+    cap_w = udisp_screen.height;
+    cap_h = udisp_screen.width;
+#endif
     snprintf(capability, sizeof(capability), "esp32p4udisp0_R%ux%u_Ejpg%d_Fps%d_Bl%u",
-             udisp_screen.width, udisp_screen.height, UDISP_JPEG_QUALITY,
+             cap_w, cap_h, UDISP_JPEG_QUALITY,
              UDISP_MAX_FPS, (unsigned)(UDISP_FRAME_LIMIT / 1024));
     p = add_string(p, "Espressif");
     p = add_string(p, capability);
@@ -144,9 +157,18 @@ static void receive(const uint8_t *data, uint32_t length)
 {
     struct udisp_header h;
     uint32_t payload, copy;
+    uint16_t exp_w, exp_h;
     int i;
     if (!length) return;
     udisp_stats.received += length;
+    /* Frames from the host are exchanged at landscape dimensions (swapped) in
+     * 横屏 mode; the VE decoder rotates them to the portrait scanout. */
+    exp_w = udisp_screen.width;
+    exp_h = udisp_screen.height;
+#ifdef AIC_USB_DISP_ROTATION_FULLSCREEN
+    exp_w = udisp_screen.height;
+    exp_h = udisp_screen.width;
+#endif
     if (skip_remaining) {
         skip_remaining -= length < skip_remaining ? length : skip_remaining;
         return;
@@ -156,8 +178,8 @@ static void receive(const uint8_t *data, uint32_t length)
         memcpy(&h, data, sizeof(h));
         payload = h.payload_total;
         if (h.type == 0xff) return;
-        if (h.type != 3 || h.x || h.y || h.width != udisp_screen.width ||
-            h.height != udisp_screen.height || !payload) {
+        if (h.type != 3 || h.x || h.y || h.width != exp_w ||
+            h.height != exp_h || !payload) {
             udisp_stats.invalid++;
             if (payload <= UDISP_FRAME_LIMIT * 4U) skip_remaining = payload;
         } else {
