@@ -115,7 +115,7 @@ static int panel_enable(struct aic_panel *panel)
      * displayed as black and white as white. Send 0x20 instead if a future
      * panel revision comes up with correct polarity.
      */
-    panel_dsi_dcs_send_seq(panel, 0x21);
+    panel_dsi_dcs_send_seq(panel, 0x20);
 
     ret = panel_dsi_dcs_set_display_on(panel);
     if (ret < 0) {
