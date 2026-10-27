@@ -2125,6 +2125,8 @@
     "RT_USING_LIBC",
     "_POSIX_C_SOURCE=1",
     "CONFIG_USB_HS",
-    "LFS_CONFIG=lfs_config.h"
+    "LFS_CONFIG=lfs_config.h",
+    "LV_DISPLAY_ROTATE_EN",
+    "LV_ROTATE_DEGREE=90"
   ]
 }
