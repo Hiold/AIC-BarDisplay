@@ -46,6 +46,10 @@ def main():
     ap.add_argument("--out", type=int, default=(320, 1280), nargs=2,
                     metavar=("W", "H"))
     ap.add_argument("--quality", type=int, default=33)
+    ap.add_argument("--rotate", type=int, choices=(0, 90, 180, 270), default=0,
+                    help="rotate each source frame before (optional) crop: "
+                         "90/270 turns a portrait source into landscape "
+                         "(landscape-mode display). 0 keeps orientation.")
     ap.add_argument("--work", type=pathlib.Path,
                     help="unpacked/cropped JPEG work dir (kept on disk)")
     ap.add_argument("--frames", type=int, default=None,
@@ -65,14 +69,27 @@ def main():
     crop.mkdir(parents=True, exist_ok=True)
 
     n = h["frame_count"] if args.frames is None else min(args.frames, h["frame_count"])
-    print("source %dx%d / %d frames; target %dx%d, quality %d"
-          % (h["width"], h["height"], n, out_w, out_h, args.quality))
+    print("source %dx%d / %d frames; target %dx%d, quality %d, rotate %d"
+          % (h["width"], h["height"], n, out_w, out_h, args.quality, args.rotate))
 
-    # Crop geometry: keep the centre out_w x out_h window of the source.
-    x0 = (h["width"] - out_w) // 2
-    y0 = (h["height"] - out_h) // 2
+    # Rotation-aware working geometry: apply the rotation to the un-rotated
+    # source size first, so x0/y0 and the odd/even checks operate on the
+    # rotated canvas.  PIL ROTATE_90 is counter-clockwise on a w x h image
+    # giving h x w.
+    rotate = args.rotate
+    src_rot_w, src_rot_h = h["width"], h["height"]
+    if rotate in (90, 270):
+        src_rot_w, src_rot_h = src_rot_h, src_rot_w
+
+    # Crop geometry: keep the centre out_w x out_h window of the (rotated)
+    # source.
+    x0 = (src_rot_w - out_w) // 2
+    y0 = (src_rot_h - out_h) // 2
     x0 &= ~1  # even for 4:2:0 chroma alignment
     y0 &= ~1
+
+    pil_rot = {0: 0, 90: Image.ROTATE_90, 180: Image.ROTATE_180,
+               270: Image.ROTATE_270}[rotate]
 
     max_frame = 0
     frame_enc = []  # (offset, bytes) later resolved to actual offsets
@@ -82,6 +99,8 @@ def main():
         im = Image.open(io.BytesIO(frame)).convert("RGB")
         if im.size != (h["width"], h["height"]):
             print("WARN frame %d size %s != header" % (i, im.size))
+        if pil_rot:
+            im = im.transpose(pil_rot)
         cropped = im.crop((x0, y0, x0 + out_w, y0 + out_h))
         if (cropped.size[0] & 1) or (cropped.size[1] & 1):
             raise SystemExit("cropped dims not even")
