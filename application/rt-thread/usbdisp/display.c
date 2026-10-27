@@ -43,7 +43,6 @@ static struct packet_allocator allocator = {.ops=&ops};
 int udisp_decoder_open(void)
 {
     struct decode_config config = {0};
-    int rotmir = 0;
     if (decoder) return 0;
     decoder = mpp_decoder_create(MPP_CODEC_VIDEO_DECODER_MJPEG);
     if (!decoder) return -1;
@@ -56,16 +55,6 @@ int udisp_decoder_open(void)
      * PSRAM CMA for the framebuffer and both NV12 surfaces. */
     config.extra_frame_num = 1;
     mpp_decoder_control(decoder, MPP_DEC_INIT_CMD_SET_EXT_PACKET_ALLOCATOR, &allocator);
-    /* Landscape (横屏) display: the panel scanout is physically portrait but
-     * the content is rendered landscape (long axis horizontal) and rotated 90
-     * degrees. The host / idle video supply landscape JPEG frames, so the VE
-     * JPEG decoder performs the rotation to fill the portrait panel full
-     * screen. MPP_DEC_INIT_CMD_SET_ROT_FLIP_FLAG mirrors into
-     * decoder->rotmir_flag used by the MJPEG software/hardware decoder. */
-#ifdef AIC_USB_DISP_ROTATION_FULLSCREEN
-    rotmir = MPP_ROTATION_90;
-    mpp_decoder_control(decoder, MPP_DEC_INIT_CMD_SET_ROT_FLIP_FLAG, &rotmir);
-#endif
     if (mpp_decoder_init(decoder, &config)) {
         mpp_decoder_destory(decoder); decoder = NULL;
         return -1;
@@ -131,33 +120,26 @@ bool udisp_decode(const uint8_t *data, uint32_t size, bool native_screen)
     layer.buf = frame.buf;
     unsigned width = frame.buf.crop_en ? frame.buf.crop.width : frame.buf.size.width;
     unsigned height = frame.buf.crop_en ? frame.buf.crop.height : frame.buf.size.height;
-    /* The physical panel scanout is portrait (FIRMWARE_WIDTH x HEIGHT).  In
-     * landscape (横屏) mode the VE decoder rotates the landscape JPEG frames
-     * to fill it, so the decoded NV12 surface has the portrait dimensions of
-     * the panel - not the landscape dimensions reported to the USB host via
-     * udisp_screen (which is swapped by the fb rotation). */
-    unsigned scanout_w = FIRMWARE_WIDTH;
-    unsigned scanout_h = FIRMWARE_HEIGHT;
-    if (native_screen && (width != scanout_w || height != scanout_h)) {
+    if (native_screen && (width != udisp_screen.width || height != udisp_screen.height)) {
         udisp_stats.invalid++;
         mpp_decoder_put_frame(decoder, &frame);
         return false;
     }
     /* Preserve native pixels. The original idle clip is centered, with a
      * centered crop on panels narrower than the clip. */
-    if (width > scanout_w || height > scanout_h) {
-        layer.buf.crop.x += width > scanout_w ?
-                            ((width - scanout_w) / 2) & ~1U : 0;
-        layer.buf.crop.y += height > scanout_h ?
-                            ((height - scanout_h) / 2) & ~1U : 0;
-        width = width > scanout_w ? scanout_w : width;
-        height = height > scanout_h ? scanout_h : height;
+    if (width > udisp_screen.width || height > udisp_screen.height) {
+        layer.buf.crop.x += width > udisp_screen.width ?
+                            ((width - udisp_screen.width) / 2) & ~1U : 0;
+        layer.buf.crop.y += height > udisp_screen.height ?
+                            ((height - udisp_screen.height) / 2) & ~1U : 0;
+        width = width > udisp_screen.width ? udisp_screen.width : width;
+        height = height > udisp_screen.height ? udisp_screen.height : height;
         layer.buf.crop_en = 1;
         layer.buf.crop.width = width;
         layer.buf.crop.height = height;
     }
-    layer.pos.x = (scanout_w - width) / 2;
-    layer.pos.y = (scanout_h - height) / 2;
+    layer.pos.x = (udisp_screen.width - width) / 2;
+    layer.pos.y = (udisp_screen.height - height) / 2;
     layer.scale_size.width = width;
     layer.scale_size.height = height;
     aicos_mutex_take(udisp_display_lock, AICOS_WAIT_FOREVER);

@@ -21,7 +21,6 @@
 /* Application options */
 
 #define APP_USB_DISP
-#define AIC_USB_DISP_ROTATION_FULLSCREEN 1
 
 /* Filesystem related */
 
@@ -222,9 +221,8 @@
 #define AICFB_FORMAT 0x08
 #define AIC_DISP_BOOTUP_LOGO
 #define AIC_DISP_COLOR_BLOCK
-#define AIC_FB_ROTATE_EN 1
-#define AICFB_ROTATE_90
-#define AIC_FB_ROTATE_DEGREE 90
+#define AICFB_ROTATE_0
+#define AIC_FB_ROTATE_DEGREE 0
 
 /* Display Panels */
 

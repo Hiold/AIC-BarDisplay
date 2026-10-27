@@ -530,12 +530,8 @@ void udisp_ui_init(void)
                           ui_buf_bytes, LV_DISPLAY_RENDER_MODE_FULL);
     ui_layer.layer_id = AICFB_LAYER_TYPE_UI;
     ui_layer.enable = 1;
-    /* The DE scanout is the physical portrait panel (FIRMWARE_WIDTH x HEIGHT).
-     * In landscape (横屏) mode udisp_screen is reported swapped by the fb
-     * rotation; position the UI window on the actual portrait scanout so it
-     * stays on-screen instead of drifting past the narrow panel edge. */
-    ui_layer.pos.x = (FIRMWARE_WIDTH - ui_w) / 2;
-    ui_layer.pos.y = (FIRMWARE_HEIGHT - ui_h) / 2;
+    ui_layer.pos.x = (udisp_screen.width - ui_w) / 2;
+    ui_layer.pos.y = (udisp_screen.height - ui_h) / 2;
     ui_layer.buf.buf_type = MPP_PHY_ADDR;
     ui_layer.buf.phy_addr[0] = (uintptr_t)ui_buffer;
     ui_layer.buf.stride[0] = ui_w * 4;
