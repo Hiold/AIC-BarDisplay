@@ -2088,7 +2088,7 @@
       "cpppath": []
     },
     {
-      "source": "${ROOT}/application/rt-thread/usbdisp/display.c",
+      "source": "${ROOT}/application/rt-thread/usbdisp/lvdisp.c",
       "defines": [],
       "cflags": "",
       "cpppath": []
