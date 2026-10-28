@@ -1,34 +1,14 @@
 {
-  "source": "C:\\Users\\23191\\Desktop\\luban-lite\\untitled.mp4",
-  "original": {
-    "width": 480,
-    "height": 1920,
-    "fps": "30",
-    "frames": 602,
-    "quality": 33,
-    "subsampling": "4:2:0",
-    "progressive": false,
-    "bytes": 25908703,
-    "max_frame_bytes": 45153
-  },
+  "note": "Static single-frame idle clip. Default interface is the full-screen image bg.png shown on the VIDEO layer; the LVGL UI overlay is removed.",
+  "source": "D:\\Documents\\qwen-agent\\ZDqLaTpxjw\\default\\visual\\vis_20261027_231501_d9979fcc\\bg.png",
   "width": 1920,
-  "height": 480,
-  "fps": "30",
-  "frames": 602,
-  "quality": 33,
-  "subsampling": "4:2:0",
-  "progressive": false,
-  "rotate": 90,
+  "height": 440,
+  "fps": "1",
+  "frames": 1,
+  "quality": 80,
   "orientation": "landscape",
-  "budget": 25920000,
-  "bytes": 25714023,
-  "max_frame_bytes": 44812,
-  "rebuild": {
-    "tool": "tools/video_rebuild/rebuild.py",
-    "out": [
-      1920,
-      480
-    ],
-    "rotate": 90
-  }
+  "bytes": 155536,
+  "max_frame_bytes": 155464,
+  "tool": "tools/make_static_video.py",
+  "rebuilt": true
 }

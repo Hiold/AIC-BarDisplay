@@ -87,20 +87,23 @@ esp32p4udisp0_R480x1920_Ejpg6_Fps60_Bl292
 | 基础 framebuffer | 一份全屏 RGB888 分配 | 2,764,800 bytes，约 2.64 MiB |
 | JPEG RX | 两槽，每槽 300,000 bytes；空闲视频复用其中一槽 | 600,000 bytes，约 0.57 MiB |
 | 解码输出 | 两份全屏 NV12，保留可见帧至下一帧切换 | 合计约 2.64 MiB |
-| 待机 UI | 两个 400×480 ARGB8888 窗口，复用基础 framebuffer 分配 | 1,536,000 bytes，**不额外叠加分配** |
+| 待机 UI | 空白的 ARGB8888 窗口，复用基础 framebuffer 分配，**不绘制任何面板** | 保持原窗口分配，**不额外叠加** |
 | PSRAM SW 保留区 | 应用固定配置为 1 MiB | 其余预算用于 CMA/多媒体资源 |
 
-待机 UI 是居中的 1:1 窗口，双缓冲整窗渲染后切换；背景视频由 DE 视频层扫描输出。副屏模式关闭 UI 图层并释放页面对象，避免 LVGL 与解码器争抢额外的大块内存。
+默认待机界面为**整屏静态图片**：背景图由 DE 视频层按 1920×440→竖屏全屏扫描输出，LVGL UI 图层保持空白透明、不创建任何面板/设置/状态控件。副屏（USB 视频流）模式照旧关闭 UI 图层并释放页面对象。
 
 副屏运行时串口周期输出 `usbdisp perf`，包含接收字节率、完整帧/丢帧计数、解码与显示速率、平均耗时及错误计数。可据此区分传输、解码和显示瓶颈；它是工作线程内的诊断，线程阻塞时日志也可能停止。
 
-## 空闲视频、设置与 Flash
+## 默认静态图、设置与 Flash
 
-空闲页循环播放 `application/rt-thread/usbdisp/assets/video/video.bin`。当前资源采用参考工程的 `LVGLMJPG` 容器：64 字节头、逐帧偏移/长度索引和独立 JPEG 帧。索引按需从 Flash 读取，不常驻缓存整张索引表。
+默认待机界面是 **1920×440 的整屏静态图片** `bg.png`，经 `tools/make_static_video.py` 打包成**单帧** `LVGLMJPG` 资源 `application/rt-thread/usbdisp/assets/video/video.bin`，沿用参考工程的容器：64 字节头、逐帧偏移/长度索引和独立 JPEG 帧。索引按需从 Flash 读取，不常驻缓存整张索引表。
 
-当前视频为 **480×1920、30 FPS、602 帧**，使用 baseline JPEG / 4:2:0，编码质量 33，大小 25,908,703 bytes；最大单帧 45,153 bytes。质量 33 是此视频资源的编码参数，与 USB 驱动协议的 `Ejpg6` 不同。窄屏使用居中且符合色度对齐要求的裁剪，不缩放。
+该静态图资源为 **1920×440、1 FPS、1 帧**，baseline JPEG / 4:2:0，编码质量 80，约 155 KB。DE 视频层用与旧动画相同的方式（`AIC_USB_DISP_ROTATION_FULLSCREEN` 硬件旋转）把它旋转成竖屏 440×1920 全屏显示；LVGL UI 图层（`ui.c`）不再创建任何面板、设置页、等待转圈或倒计时控件，因此屏幕上只有这张图。
 
-设置页由 LVGL 实现，隐藏待机页、HID 开关等设置保存到 `/data/udisp.cfg`。当前无物理触摸，设置可通过串口命令操作；、
+> 重新生成静态背景：`python tools/make_static_video.py <bg.png> application/rt-thread/usbdisp/assets/video/video.bin --width 1920 --height 440`，
+> 然后 `.\build.cmd d133-boe1126`（或对应变体）即可。
+
+其余界面仍按原有 LVGL 实现路径保留在代码中（尚未使用的设置相关零散函数已随本改动一并裁剪）；USB 视频流副屏模式不受影响。
 
 串口控制台：D125 使用 UART0，D133 使用 UART6，115200 / 8N1。空闲页状态下可执行：
 
