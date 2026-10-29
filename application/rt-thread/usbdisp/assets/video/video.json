@@ -1,22 +1,36 @@
 {
-  "note": "Animated idle clip on the full-screen VIDEO layer (1920x440 landscape, DE hardware rotation to the portrait panel).",
+  "note": "Animated idle clip on the full-screen VIDEO layer (1920x440 landscape, DE hardware rotation to the portrait panel). Re-cut from the original MP4 with a much higher JPEG quality for a sharper idle image; storing duration limited to 15 s at 12 fps to keep the rodata budget balanced.",
   "source": "E:\\001\\video\\zelda_new.mp4",
   "original": {
     "width": 1920,
     "height": 440,
     "fps": "29.97",
     "frames": 795,
-    "duration_s": 26.52
+    "duration_s": 26.53
   },
   "width": 1920,
   "height": 440,
-  "fps": "30",
-  "frames": 795,
-  "quality": 13,
+  "fps": "12",
+  "fps_den": 1,
+  "frames": 180,
+  "duration_s": 15.0,
+  "quality": 72,
   "subsampling": "4:2:0",
   "progressive": false,
   "orientation": "landscape",
-  "bytes": 21065830,
-  "max_frame_bytes": 27255,
-  "tool": "tools/make_video_from_mp4.py"
+  "bytes": 18693393,
+  "max_frame_bytes": 107664,
+  "tool": "tools/video_rebuild/make_video_from_frames.py",
+  "cut": {
+    "duration_s": 15,
+    "fps": 12,
+    "frames": 180,
+    "note": "Trimmed to the first 15 s of the 26.5 s source and dropped to 12 fps so the single-frame JPEG quality could be raised from 13 to 72 without exceeding the rodata budget."
+  },
+  "previous": {
+    "fps": "15",
+    "frames": 400,
+    "bytes": 10153910,
+    "note": "previous 15fps regen stored before the high-quality re-cut"
+  }
 }
