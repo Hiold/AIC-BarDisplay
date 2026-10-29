@@ -1,14 +1,22 @@
 {
-  "note": "Static single-frame idle clip. Default interface is the full-screen image bg.png shown on the VIDEO layer; the LVGL UI overlay is removed.",
-  "source": "D:\\Documents\\qwen-agent\\ZDqLaTpxjw\\default\\visual\\vis_20261027_231501_d9979fcc\\bg.png",
+  "note": "Animated idle clip on the full-screen VIDEO layer (1920x440 landscape, DE hardware rotation to the portrait panel).",
+  "source": "E:\\001\\video\\zelda_new.mp4",
+  "original": {
+    "width": 1920,
+    "height": 440,
+    "fps": "29.97",
+    "frames": 795,
+    "duration_s": 26.52
+  },
   "width": 1920,
   "height": 440,
-  "fps": "1",
-  "frames": 1,
-  "quality": 80,
+  "fps": "30",
+  "frames": 795,
+  "quality": 13,
+  "subsampling": "4:2:0",
+  "progressive": false,
   "orientation": "landscape",
-  "bytes": 155536,
-  "max_frame_bytes": 155464,
-  "tool": "tools/make_static_video.py",
-  "rebuilt": true
+  "bytes": 21065830,
+  "max_frame_bytes": 27255,
+  "tool": "tools/make_video_from_mp4.py"
 }
