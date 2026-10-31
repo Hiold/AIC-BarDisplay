@@ -1,9 +1,9 @@
 [
   {
-    "variant": "d133-boe1126",
-    "path": "images/d133-boe1126.img",
-    "bytes": 22288384,
-    "sha256": "fa2aa6b34d20ce14ef12f28e9eedde3562d6469c3201db5eefde8bc44f2012f7",
+    "variant": "d133-mipipi-boe1126",
+    "path": "images/d133-mipipi-boe1126.img",
+    "bytes": 22460928,
+    "sha256": "d6bc867a680b9e543a1c843ba3c5eb255e5fe64a68d2796a58e55f5568e94b95",
     "width": 440,
     "height": 1920
   }

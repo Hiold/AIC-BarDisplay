@@ -1,0 +1,14 @@
+﻿{
+  "id": "req_6",
+  "type": "response",
+  "version": "v1",
+  "windowId": "b7cdc9c2-d2e5-487a-bc5c-faf2c1102b53",
+  "createdAt": "2026-10-30T12:42:48.7753735Z",
+  "ok": false,
+  "error": {
+    "code": "INVALID_STATE",
+    "message": "Cannot verify schematic readiness before netlist export: ActionError: Active schematic document instance is unavailable."
+  },
+  "seq": 5,
+  "seqAbandoned": 0
+}

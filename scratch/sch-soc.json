@@ -1,0 +1,3613 @@
+﻿{
+  "id": "req_22",
+  "type": "response",
+  "version": "v1",
+  "windowId": "b7cdc9c2-d2e5-487a-bc5c-faf2c1102b53",
+  "createdAt": "2026-10-30T12:43:45.8695436Z",
+  "ok": true,
+  "result": {
+    "check": null,
+    "componentCount": 80,
+    "components": [
+      {
+        "componentType": "sheet",
+        "designator": "",
+        "footprint": {
+          "uuid": ""
+        },
+        "name": "",
+        "pins": [],
+        "primitiveId": "e1",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "componentType": "part",
+        "designator": "U1",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "QFN-88_L10.0-W10.0-P0.40-BL-EP6.75",
+          "uuid": "3ef73e7d613947db95fda68daa40fdd7"
+        },
+        "name": "={Manufacturer Part}",
+        "pins": [
+          {
+            "name": "PC0",
+            "net": "SDC1_D1",
+            "number": "1"
+          },
+          {
+            "name": "PC1",
+            "net": "SDC1_D0",
+            "number": "2"
+          },
+          {
+            "name": "PC2",
+            "net": "SDC1_CLK",
+            "number": "3"
+          },
+          {
+            "name": "PC3",
+            "net": "SDC1_CMD",
+            "number": "4"
+          },
+          {
+            "name": "PC4",
+            "net": "SDC1_D3",
+            "number": "5"
+          },
+          {
+            "name": "PC5",
+            "net": "SDC1_D2",
+            "number": "6"
+          },
+          {
+            "name": "PC6",
+            "net": "SDC1_DET",
+            "number": "7"
+          },
+          {
+            "name": "VDD11_SYS",
+            "net": "VCC_1V1",
+            "number": "8"
+          },
+          {
+            "name": "PD27",
+            "net": "DSI_D0P",
+            "number": "9"
+          },
+          {
+            "name": "PD26",
+            "net": "DSI_D0N",
+            "number": "10"
+          },
+          {
+            "name": "PD25",
+            "net": "DSI_D1P",
+            "number": "11"
+          },
+          {
+            "name": "PD24",
+            "net": "DSI_D1N",
+            "number": "12"
+          },
+          {
+            "name": "PD23",
+            "net": "DSI_CKP",
+            "number": "13"
+          },
+          {
+            "name": "PD22",
+            "net": "DSI_CKN",
+            "number": "14"
+          },
+          {
+            "name": "VCC33_IO",
+            "net": "VCC_3V3",
+            "number": "15"
+          },
+          {
+            "name": "PD21",
+            "net": "DSI_D2P",
+            "number": "16"
+          },
+          {
+            "name": "PD20",
+            "net": "DSI_D2N",
+            "number": "17"
+          },
+          {
+            "name": "PD19",
+            "net": "DSI_D3P",
+            "number": "18"
+          },
+          {
+            "name": "PD18",
+            "net": "DSI_D3N",
+            "number": "19"
+          },
+          {
+            "name": "PD17",
+            "net": "UART2_RX",
+            "number": "20"
+          },
+          {
+            "name": "PD16",
+            "net": "UART2_TX",
+            "number": "21"
+          },
+          {
+            "name": "PD15",
+            "net": "DSI_RST",
+            "number": "22"
+          },
+          {
+            "name": "PD14",
+            "net": "DSI_EN",
+            "number": "23"
+          },
+          {
+            "name": "PD13",
+            "net": null,
+            "number": "24"
+          },
+          {
+            "name": "PD12",
+            "net": null,
+            "number": "25"
+          },
+          {
+            "name": "PD11",
+            "net": null,
+            "number": "26"
+          },
+          {
+            "name": "PD10",
+            "net": null,
+            "number": "27"
+          },
+          {
+            "name": "PD9",
+            "net": null,
+            "number": "28"
+          },
+          {
+            "name": "PD8",
+            "net": null,
+            "number": "29"
+          },
+          {
+            "name": "VDD11_SYS",
+            "net": "VCC_1V1",
+            "number": "30"
+          },
+          {
+            "name": "LDO18",
+            "net": "VCC_1V8",
+            "number": "31"
+          },
+          {
+            "name": "PD7",
+            "net": "WIFI_ON",
+            "number": "32"
+          },
+          {
+            "name": "PD6",
+            "net": "LCD_PWM",
+            "number": "33"
+          },
+          {
+            "name": "PD5",
+            "net": null,
+            "number": "34"
+          },
+          {
+            "name": "PD4",
+            "net": null,
+            "number": "35"
+          },
+          {
+            "name": "VCC33_IO",
+            "net": "VCC_3V3",
+            "number": "36"
+          },
+          {
+            "name": "PD3",
+            "net": "CTP_RST",
+            "number": "37"
+          },
+          {
+            "name": "PD2",
+            "net": "CTP_INT",
+            "number": "38"
+          },
+          {
+            "name": "PD1",
+            "net": "CTP_SDA",
+            "number": "39"
+          },
+          {
+            "name": "PD0",
+            "net": "CTP_SCL",
+            "number": "40"
+          },
+          {
+            "name": "PE0",
+            "net": null,
+            "number": "41"
+          },
+          {
+            "name": "PE1",
+            "net": null,
+            "number": "42"
+          },
+          {
+            "name": "PE2",
+            "net": null,
+            "number": "43"
+          },
+          {
+            "name": "PE3",
+            "net": null,
+            "number": "44"
+          },
+          {
+            "name": "PE4",
+            "net": "PE4_UART5_TX",
+            "number": "45"
+          },
+          {
+            "name": "PE5",
+            "net": "PE5_UART5_RX",
+            "number": "46"
+          },
+          {
+            "name": "PE6",
+            "net": "PE6_UART6_TX",
+            "number": "47"
+          },
+          {
+            "name": "PE7",
+            "net": "PE7_UART6_RX",
+            "number": "48"
+          },
+          {
+            "name": "PE8",
+            "net": "PE8_UART7_TX",
+            "number": "49"
+          },
+          {
+            "name": "PE9",
+            "net": "PE9_UART7_RX",
+            "number": "50"
+          },
+          {
+            "name": "PE10",
+            "net": "I2S_DIN",
+            "number": "51"
+          },
+          {
+            "name": "PE11",
+            "net": "I2S_LRCK",
+            "number": "52"
+          },
+          {
+            "name": "PE12",
+            "net": "I2S_BCLK",
+            "number": "53"
+          },
+          {
+            "name": "PE13",
+            "net": "I2S_DOUT",
+            "number": "54"
+          },
+          {
+            "name": "PB0",
+            "net": "SPI0_WP",
+            "number": "55"
+          },
+          {
+            "name": "PB1",
+            "net": "SPI0_MISO",
+            "number": "56"
+          },
+          {
+            "name": "PB2",
+            "net": "SPI0_CS",
+            "number": "57"
+          },
+          {
+            "name": "PB3",
+            "net": "SPI0_HOLD",
+            "number": "58"
+          },
+          {
+            "name": "PB4",
+            "net": "SPI0_CLK",
+            "number": "59"
+          },
+          {
+            "name": "PB5",
+            "net": "SPI0_MOSI",
+            "number": "60"
+          },
+          {
+            "name": "PB6",
+            "net": "SDC0_CMD",
+            "number": "61"
+          },
+          {
+            "name": "PB7",
+            "net": "SDC0_CLK",
+            "number": "62"
+          },
+          {
+            "name": "PB8",
+            "net": "SDC0_D3",
+            "number": "63"
+          },
+          {
+            "name": "PB9",
+            "net": "SDC0_D0",
+            "number": "64"
+          },
+          {
+            "name": "PB10",
+            "net": "SDC0_D1",
+            "number": "65"
+          },
+          {
+            "name": "PB11",
+            "net": "SDC0_D2",
+            "number": "66"
+          },
+          {
+            "name": "RESETN",
+            "net": "RESET",
+            "number": "67"
+          },
+          {
+            "name": "VDD11_SYS",
+            "net": "VCC_1V1",
+            "number": "68"
+          },
+          {
+            "name": "VCC33_IO",
+            "net": "VCC_3V3",
+            "number": "69"
+          },
+          {
+            "name": "LDO25",
+            "net": "LDO25",
+            "number": "70"
+          },
+          {
+            "name": "PA0",
+            "net": "UART0_TX_DEBUG",
+            "number": "71"
+          },
+          {
+            "name": "PA1",
+            "net": "UART0_RX_DEBUG",
+            "number": "72"
+          },
+          {
+            "name": "PA2",
+            "net": null,
+            "number": "73"
+          },
+          {
+            "name": "PA3",
+            "net": "PA_ON",
+            "number": "74"
+          },
+          {
+            "name": "PA4",
+            "net": "PA4_CAN0_TX",
+            "number": "75"
+          },
+          {
+            "name": "PA5",
+            "net": "PA5_CAN0_RX",
+            "number": "76"
+          },
+          {
+            "name": "PA8",
+            "net": null,
+            "number": "77"
+          },
+          {
+            "name": "PA9",
+            "net": null,
+            "number": "78"
+          },
+          {
+            "name": "PA10",
+            "net": "JTAG_MS",
+            "number": "79"
+          },
+          {
+            "name": "PA11",
+            "net": "JTAG_CK",
+            "number": "80"
+          },
+          {
+            "name": "PLL_XO",
+            "net": "X24MOUT",
+            "number": "81"
+          },
+          {
+            "name": "PLL_XI",
+            "net": "X24MIN",
+            "number": "82"
+          },
+          {
+            "name": "RTC_IO",
+            "net": "RTC_32K",
+            "number": "83"
+          },
+          {
+            "name": "RTC_VCOIN",
+            "net": "RTC_VCOIN",
+            "number": "84"
+          },
+          {
+            "name": "RTC_XO",
+            "net": "RTC_X0",
+            "number": "85"
+          },
+          {
+            "name": "RTC_XI",
+            "net": "RTC_XI",
+            "number": "86"
+          },
+          {
+            "name": "USB0_DM",
+            "net": "USB0_N",
+            "number": "87"
+          },
+          {
+            "name": "USB0_DP",
+            "net": "USB0_P",
+            "number": "88"
+          },
+          {
+            "name": "EP",
+            "net": "GND",
+            "number": "89"
+          }
+        ],
+        "primitiveId": "e37",
+        "supplierId": "C19268973",
+        "uniqueId": "gge20",
+        "x": 290,
+        "y": 890
+      },
+      {
+        "componentType": "part",
+        "designator": "X1",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "CRYSTAL-SMD_4P-L3.2-W2.5-BL",
+          "uuid": "5a31c6537b9d4aa0908520f46525fa12"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "GND",
+            "net": "GND",
+            "number": "4"
+          },
+          {
+            "name": "GND",
+            "net": "GND",
+            "number": "2"
+          },
+          {
+            "name": "OSC1",
+            "net": "X24MIN",
+            "number": "1"
+          },
+          {
+            "name": "OSC2",
+            "net": "X24MOUT",
+            "number": "3"
+          }
+        ],
+        "primitiveId": "e1155",
+        "supplierId": "C70590",
+        "uniqueId": "gge1",
+        "x": 205,
+        "y": 535
+      },
+      {
+        "componentType": "part",
+        "designator": "C1",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "84c70899f17b441d9ebf4f618bdeb15f"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "X24MOUT",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "e1354",
+        "supplierId": "C1647",
+        "uniqueId": "gge2",
+        "x": 205,
+        "y": 585
+      },
+      {
+        "componentType": "part",
+        "designator": "C4",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "84c70899f17b441d9ebf4f618bdeb15f"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "X24MIN",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "GND",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "e1388",
+        "supplierId": "C1647",
+        "uniqueId": "gge3",
+        "x": 205,
+        "y": 480
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": {
+          "uuid": ""
+        },
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "e1500",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 145,
+        "y": 565
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": {
+          "uuid": ""
+        },
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "e1513",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 260,
+        "y": 505
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": {
+          "uuid": ""
+        },
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "e1659",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 100,
+        "y": 85
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": {
+          "uuid": ""
+        },
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "e2324",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 120,
+        "y": 310
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": {
+          "uuid": ""
+        },
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "e2338",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 330,
+        "y": 305
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": {
+          "uuid": ""
+        },
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "e2352",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 325,
+        "y": 200
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": {
+          "uuid": ""
+        },
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "e2366",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 115,
+        "y": 190
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": {
+          "uuid": ""
+        },
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "e4269",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 335,
+        "y": 85
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": {
+          "uuid": ""
+        },
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "e5424",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 440,
+        "y": 540
+      },
+      {
+        "componentType": "part",
+        "designator": "C12",
+        "footprint": {
+          "libraryUuid": "d8311ef48c19485eb3b8110d1fa2ccf6",
+          "name": "C0603-1u",
+          "uuid": "198bcf20b800cf24"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "LDO25",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "e1796",
+        "supplierId": "",
+        "uniqueId": "gge7",
+        "x": 115,
+        "y": 210
+      },
+      {
+        "componentType": "part",
+        "designator": "C14",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "018e5f1ed54e9ed7"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_1V8",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "e1830",
+        "supplierId": "C19702",
+        "uniqueId": "gge8",
+        "x": 325,
+        "y": 220
+      },
+      {
+        "componentType": "part",
+        "designator": "C5",
+        "footprint": {
+          "libraryUuid": "d8311ef48c19485eb3b8110d1fa2ccf6",
+          "name": "C0603_100nF",
+          "uuid": "5ac70534a41dcd04"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_1V1",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "e1864",
+        "supplierId": "C14663",
+        "uniqueId": "gge9",
+        "x": 120,
+        "y": 335
+      },
+      {
+        "componentType": "part",
+        "designator": "C6",
+        "footprint": {
+          "libraryUuid": "d8311ef48c19485eb3b8110d1fa2ccf6",
+          "name": "C0603_100nF",
+          "uuid": "5ac70534a41dcd04"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_1V1",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "e1898",
+        "supplierId": "C14663",
+        "uniqueId": "gge10",
+        "x": 170,
+        "y": 335
+      },
+      {
+        "componentType": "part",
+        "designator": "C7",
+        "footprint": {
+          "libraryUuid": "d8311ef48c19485eb3b8110d1fa2ccf6",
+          "name": "C0603_100nF",
+          "uuid": "5ac70534a41dcd04"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_1V1",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "e1932",
+        "supplierId": "C14663",
+        "uniqueId": "gge11",
+        "x": 220,
+        "y": 335
+      },
+      {
+        "componentType": "part",
+        "designator": "C8",
+        "footprint": {
+          "libraryUuid": "d8311ef48c19485eb3b8110d1fa2ccf6",
+          "name": "C0603_100nF",
+          "uuid": "5ac70534a41dcd04"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_3V3",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "e1966",
+        "supplierId": "C14663",
+        "uniqueId": "gge12",
+        "x": 330,
+        "y": 340
+      },
+      {
+        "componentType": "part",
+        "designator": "C9",
+        "footprint": {
+          "libraryUuid": "d8311ef48c19485eb3b8110d1fa2ccf6",
+          "name": "C0603_100nF",
+          "uuid": "5ac70534a41dcd04"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_3V3",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "e2000",
+        "supplierId": "C14663",
+        "uniqueId": "gge13",
+        "x": 380,
+        "y": 340
+      },
+      {
+        "componentType": "part",
+        "designator": "C10",
+        "footprint": {
+          "libraryUuid": "d8311ef48c19485eb3b8110d1fa2ccf6",
+          "name": "C0603_100nF",
+          "uuid": "5ac70534a41dcd04"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_3V3",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "e2034",
+        "supplierId": "C14663",
+        "uniqueId": "gge14",
+        "x": 430,
+        "y": 340
+      },
+      {
+        "componentType": "part",
+        "designator": "C13",
+        "footprint": {
+          "libraryUuid": "d8311ef48c19485eb3b8110d1fa2ccf6",
+          "name": "C0603_100nF",
+          "uuid": "5ac70534a41dcd04"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "LDO25",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "e2068",
+        "supplierId": "C14663",
+        "uniqueId": "gge15",
+        "x": 160,
+        "y": 210
+      },
+      {
+        "componentType": "part",
+        "designator": "C15",
+        "footprint": {
+          "libraryUuid": "d8311ef48c19485eb3b8110d1fa2ccf6",
+          "name": "C0603_100nF",
+          "uuid": "5ac70534a41dcd04"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_1V8",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "e2136",
+        "supplierId": "C14663",
+        "uniqueId": "gge17",
+        "x": 370,
+        "y": 220
+      },
+      {
+        "componentType": "part",
+        "designator": "X2",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "OSC-SMD_L3.2-W1.5",
+          "uuid": "ebc217e4348e420ab287752dba2d8c51"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "OSC2",
+            "net": "RTC_XI",
+            "number": "2"
+          },
+          {
+            "name": "OSC1",
+            "net": "RTC_X0",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "e5191",
+        "supplierId": "C93232",
+        "uniqueId": "gge26",
+        "x": 375,
+        "y": 540
+      },
+      {
+        "componentType": "part",
+        "designator": "C2",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "84c70899f17b441d9ebf4f618bdeb15f"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "RTC_XI",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "GND",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "e5303",
+        "supplierId": "C38523",
+        "uniqueId": "gge28",
+        "x": 400,
+        "y": 560
+      },
+      {
+        "componentType": "part",
+        "designator": "C3",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "84c70899f17b441d9ebf4f618bdeb15f"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "RTC_X0",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "GND",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "e5337",
+        "supplierId": "C38523",
+        "uniqueId": "gge29",
+        "x": 400,
+        "y": 520
+      },
+      {
+        "componentType": "part",
+        "designator": "CN2",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "CONN-SMD_2P-P1.25-HC-1.25-2PWT",
+          "uuid": "09b3db33d2ab75de"
+        },
+        "name": "={Manufacturer Part}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "$1N6880",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "GND",
+            "number": "2"
+          },
+          {
+            "name": "3",
+            "net": null,
+            "number": "3"
+          },
+          {
+            "name": "4",
+            "net": null,
+            "number": "4"
+          }
+        ],
+        "primitiveId": "4a75f29f51209206",
+        "supplierId": "C2845379",
+        "uniqueId": "gge133",
+        "x": 860,
+        "y": 1025
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": "",
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "f16053ade12b8c8e",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 715,
+        "y": 1030
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": "",
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "363677aca360cefa",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 675,
+        "y": 965
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": "",
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "413a3e0243a4e267",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 930,
+        "y": 670
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": "",
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "d4e561bec6daf565",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 980,
+        "y": 715
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": "",
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "f529e9a8ad6621ad",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 930,
+        "y": 535
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": "",
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "d631ea1118f04670",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 980,
+        "y": 580
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": "",
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "c21680b755224cd9",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 890,
+        "y": 830
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": "",
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "61f234f0ffccfa72",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 735,
+        "y": 390
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": "",
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "c9fd20400bb26929",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 735,
+        "y": 350
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": "",
+        "name": "GND",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "1eb213c2c58f5a35",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 995,
+        "y": 330
+      },
+      {
+        "componentType": "part",
+        "designator": "RST1",
+        "footprint": {
+          "libraryUuid": "5286ac681a2c45059e5a01e695da6fbe",
+          "name": "KEY-SMD_4P-L4.2-W3.2-P2.20-LS4.6",
+          "uuid": "07a7fbc3e99ad355"
+        },
+        "name": "",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": null,
+            "number": "2"
+          },
+          {
+            "name": "3",
+            "net": "RESET",
+            "number": "3"
+          },
+          {
+            "name": "4",
+            "net": null,
+            "number": "4"
+          }
+        ],
+        "primitiveId": "d24ca6919a3145fa",
+        "supplierId": "C116501",
+        "uniqueId": "gge6_1",
+        "x": 170,
+        "y": 75
+      },
+      {
+        "componentType": "part",
+        "designator": "BOOT1",
+        "footprint": {
+          "libraryUuid": "5286ac681a2c45059e5a01e695da6fbe",
+          "name": "KEY-SMD_4P-L4.2-W3.2-P2.20-LS4.6",
+          "uuid": "07a7fbc3e99ad355"
+        },
+        "name": "",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": null,
+            "number": "2"
+          },
+          {
+            "name": "3",
+            "net": "UART0_TX_DEBUG",
+            "number": "3"
+          },
+          {
+            "name": "4",
+            "net": null,
+            "number": "4"
+          }
+        ],
+        "primitiveId": "d381b89a9917f0ba",
+        "supplierId": "C116501",
+        "uniqueId": "gge6_2",
+        "x": 390,
+        "y": 75
+      },
+      {
+        "componentType": "part",
+        "designator": "pwr1",
+        "footprint": {
+          "libraryUuid": "5286ac681a2c45059e5a01e695da6fbe",
+          "name": "KEY-SMD_4P-L4.2-W3.2-P2.20-LS4.6",
+          "uuid": "07a7fbc3e99ad355"
+        },
+        "name": "",
+        "pins": [
+          {
+            "name": "1",
+            "net": "PMIC_EN",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": null,
+            "number": "2"
+          },
+          {
+            "name": "3",
+            "net": "GND",
+            "number": "3"
+          },
+          {
+            "name": "4",
+            "net": null,
+            "number": "4"
+          }
+        ],
+        "primitiveId": "fc4c156a57b613b6",
+        "supplierId": "C116501",
+        "uniqueId": "gge6_3",
+        "x": 980,
+        "y": 840
+      },
+      {
+        "componentType": "part",
+        "designator": "U4",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "CONN-SMD_SM08B-GHS-TB-LF-SN",
+          "uuid": "64f59bee3e6afbef"
+        },
+        "name": "={Manufacturer Part}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "VCC_3V3",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_5V",
+            "number": "2"
+          },
+          {
+            "name": "3",
+            "net": null,
+            "number": "3"
+          },
+          {
+            "name": "4",
+            "net": null,
+            "number": "4"
+          },
+          {
+            "name": "5",
+            "net": null,
+            "number": "5"
+          },
+          {
+            "name": "6",
+            "net": "UART2_RX",
+            "number": "6"
+          },
+          {
+            "name": "7",
+            "net": "UART2_TX",
+            "number": "7"
+          },
+          {
+            "name": "8",
+            "net": "GND",
+            "number": "8"
+          },
+          {
+            "name": "9",
+            "net": null,
+            "number": "9"
+          },
+          {
+            "name": "10",
+            "net": null,
+            "number": "10"
+          }
+        ],
+        "primitiveId": "552fcb499ab42bd6",
+        "supplierId": "C265111",
+        "uniqueId": "gge153",
+        "x": 1390,
+        "y": 695
+      },
+      {
+        "componentType": "part",
+        "designator": "CN1",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "CONN-SMD_6P-P1.50_HCTL_HC-ZH-6PWT",
+          "uuid": "901450079e21ed2e"
+        },
+        "name": "={Manufacturer Part}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "PE5_UART5_RX",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "PE4_UART5_TX",
+            "number": "2"
+          },
+          {
+            "name": "3",
+            "net": null,
+            "number": "3"
+          },
+          {
+            "name": "4",
+            "net": null,
+            "number": "4"
+          },
+          {
+            "name": "5",
+            "net": "VCC_5V",
+            "number": "5"
+          },
+          {
+            "name": "6",
+            "net": "GND",
+            "number": "6"
+          },
+          {
+            "name": "7",
+            "net": null,
+            "number": "7"
+          },
+          {
+            "name": "8",
+            "net": null,
+            "number": "8"
+          }
+        ],
+        "primitiveId": "3c252aa84a3dcd4b",
+        "supplierId": "C2845428",
+        "uniqueId": "gge180",
+        "x": 1385,
+        "y": 825
+      },
+      {
+        "componentType": "part",
+        "designator": "R1",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "R0603",
+          "uuid": "9f23454de8df01a8"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "2",
+            "net": "RTC_XI",
+            "number": "2"
+          },
+          {
+            "name": "1",
+            "net": "RTC_X0",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "6a91479e597bae71",
+        "supplierId": "",
+        "uniqueId": "gge186",
+        "x": 335,
+        "y": 540
+      },
+      {
+        "componentType": "part",
+        "designator": "R4",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "R0603",
+          "uuid": "9f23454de8df01a8"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "2",
+            "net": "$1N6880",
+            "number": "2"
+          },
+          {
+            "name": "1",
+            "net": "RTC_VCOIN",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "ba3d17f5042e8b25",
+        "supplierId": "",
+        "uniqueId": "gge187",
+        "x": 730,
+        "y": 1020
+      },
+      {
+        "componentType": "part",
+        "designator": "68k",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "R0603",
+          "uuid": "9f23454de8df01a8"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "2",
+            "net": "VCC_3V3",
+            "number": "2"
+          },
+          {
+            "name": "1",
+            "net": "FB1",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "7df307a00511349f",
+        "supplierId": "",
+        "uniqueId": "gge164",
+        "x": 930,
+        "y": 735
+      },
+      {
+        "componentType": "part",
+        "designator": "15k",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "R0603",
+          "uuid": "9f23454de8df01a8"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "2",
+            "net": "FB1",
+            "number": "2"
+          },
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "dca2a94570ab17d8",
+        "supplierId": "",
+        "uniqueId": "gge165",
+        "x": 930,
+        "y": 690
+      },
+      {
+        "componentType": "part",
+        "designator": "47k",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "R0603",
+          "uuid": "9f23454de8df01a8"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "2",
+            "net": "VCC_1V1",
+            "number": "2"
+          },
+          {
+            "name": "1",
+            "net": "FB2",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "30146c0035bf84e6",
+        "supplierId": "",
+        "uniqueId": "gge166",
+        "x": 930,
+        "y": 600
+      },
+      {
+        "componentType": "part",
+        "designator": "56k",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "R0603",
+          "uuid": "9f23454de8df01a8"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "2",
+            "net": "FB2",
+            "number": "2"
+          },
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "a361a86643073868",
+        "supplierId": "",
+        "uniqueId": "gge167",
+        "x": 930,
+        "y": 555
+      },
+      {
+        "componentType": "part",
+        "designator": "R6",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "R0603",
+          "uuid": "9f23454de8df01a8"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "2",
+            "net": "VCC_5V",
+            "number": "2"
+          },
+          {
+            "name": "1",
+            "net": "PMIC_EN",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "eeda1061e751fea0",
+        "supplierId": "",
+        "uniqueId": "gge170",
+        "x": 915,
+        "y": 880
+      },
+      {
+        "componentType": "part",
+        "designator": "R7",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "R0603",
+          "uuid": "9f23454de8df01a8"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "2",
+            "net": "$1N6918",
+            "number": "2"
+          },
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "9a292424d30aecbb",
+        "supplierId": "",
+        "uniqueId": "gge127",
+        "x": 760,
+        "y": 390
+      },
+      {
+        "componentType": "part",
+        "designator": "R8",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "R0603",
+          "uuid": "9f23454de8df01a8"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "2",
+            "net": "$1N6927",
+            "number": "2"
+          },
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "4525495f07bc760d",
+        "supplierId": "",
+        "uniqueId": "gge128",
+        "x": 760,
+        "y": 350
+      },
+      {
+        "componentType": "part",
+        "designator": "C11",
+        "footprint": {
+          "libraryUuid": "d8311ef48c19485eb3b8110d1fa2ccf6",
+          "name": "C0603_100nF",
+          "uuid": "5ac70534a41dcd04"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "RTC_VCOIN",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "aebc6d58727eafa5",
+        "supplierId": "",
+        "uniqueId": "gge188",
+        "x": 675,
+        "y": 990
+      },
+      {
+        "componentType": "part",
+        "designator": "C16",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "b6aab444ca33e4cb"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "FB1",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_3V3",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "50b9fc2da4e4f2f3",
+        "supplierId": "",
+        "uniqueId": "gge171",
+        "x": 885,
+        "y": 735
+      },
+      {
+        "componentType": "part",
+        "designator": "C17",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "018e5f1ed54e9ed7"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_3V3",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "5f8b3d6705049099",
+        "supplierId": "",
+        "uniqueId": "gge172",
+        "x": 980,
+        "y": 735
+      },
+      {
+        "componentType": "part",
+        "designator": "C22",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "b6aab444ca33e4cb"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "FB2",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_1V1",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "bcff8c388cf96164",
+        "supplierId": "",
+        "uniqueId": "gge173",
+        "x": 885,
+        "y": 600
+      },
+      {
+        "componentType": "part",
+        "designator": "C23",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "018e5f1ed54e9ed7"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_1V1",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "ccdf4f9ff7e2a230",
+        "supplierId": "",
+        "uniqueId": "gge174",
+        "x": 980,
+        "y": 600
+      },
+      {
+        "componentType": "part",
+        "designator": "C20",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "018e5f1ed54e9ed7"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_5V",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "0dcf3cbebdd9c144",
+        "supplierId": "",
+        "uniqueId": "gge129_0",
+        "x": 965,
+        "y": 350
+      },
+      {
+        "componentType": "part",
+        "designator": "C21",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "018e5f1ed54e9ed7"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_5V",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "da20c7d2d6a649b3",
+        "supplierId": "",
+        "uniqueId": "gge130_1",
+        "x": 1020,
+        "y": 350
+      },
+      {
+        "componentType": "part",
+        "designator": "C18",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "018e5f1ed54e9ed7"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_3V3",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "edb1d1af90c5f719",
+        "supplierId": "",
+        "uniqueId": "gge130_3",
+        "x": 1025,
+        "y": 735
+      },
+      {
+        "componentType": "part",
+        "designator": "C19",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "018e5f1ed54e9ed7"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_3V3",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "405aad80d33883c6",
+        "supplierId": "",
+        "uniqueId": "gge130_4",
+        "x": 1065,
+        "y": 735
+      },
+      {
+        "componentType": "part",
+        "designator": "C24",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "018e5f1ed54e9ed7"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_1V1",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "eff0e46b95087910",
+        "supplierId": "",
+        "uniqueId": "gge130_5",
+        "x": 1020,
+        "y": 600
+      },
+      {
+        "componentType": "part",
+        "designator": "C25",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "018e5f1ed54e9ed7"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_1V1",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "3f41afd2aba62242",
+        "supplierId": "",
+        "uniqueId": "gge130_6",
+        "x": 1060,
+        "y": 600
+      },
+      {
+        "componentType": "part",
+        "designator": "C33",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "018e5f1ed54e9ed7"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_5V",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "fe6f84540552a838",
+        "supplierId": "",
+        "uniqueId": "gge130_7",
+        "x": 1065,
+        "y": 350
+      },
+      {
+        "componentType": "part",
+        "designator": "C34",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "C0603",
+          "uuid": "018e5f1ed54e9ed7"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "VCC_5V",
+            "number": "2"
+          }
+        ],
+        "primitiveId": "a189403a13e4ee28",
+        "supplierId": "",
+        "uniqueId": "gge130_8",
+        "x": 1115,
+        "y": 350
+      },
+      {
+        "componentType": "part",
+        "designator": "U5",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "WQFN-20_L3.0-W3.0-P0.40-BL-EP",
+          "uuid": "ca9683a3a3eeb483"
+        },
+        "name": "={Manufacturer Part}",
+        "pins": [
+          {
+            "name": "GND3",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "FB3",
+            "net": null,
+            "number": "2"
+          },
+          {
+            "name": "FB2",
+            "net": "FB2",
+            "number": "3"
+          },
+          {
+            "name": "GND2",
+            "net": "GND",
+            "number": "4"
+          },
+          {
+            "name": "GND2",
+            "net": "GND",
+            "number": "5"
+          },
+          {
+            "name": "LX2",
+            "net": "LX2",
+            "number": "6"
+          },
+          {
+            "name": "VIN2",
+            "net": "VCC_5V",
+            "number": "7"
+          },
+          {
+            "name": "EN2",
+            "net": "PMIC_EN",
+            "number": "8"
+          },
+          {
+            "name": "EN1",
+            "net": "PMIC_EN",
+            "number": "9"
+          },
+          {
+            "name": "VIN1",
+            "net": "VCC_5V",
+            "number": "10"
+          },
+          {
+            "name": "LX1",
+            "net": "LX1",
+            "number": "11"
+          },
+          {
+            "name": "GND1",
+            "net": "GND",
+            "number": "12"
+          },
+          {
+            "name": "GND1",
+            "net": "GND",
+            "number": "13"
+          },
+          {
+            "name": "FB1",
+            "net": "FB1",
+            "number": "14"
+          },
+          {
+            "name": "AGND",
+            "net": "GND",
+            "number": "15"
+          },
+          {
+            "name": "VCC",
+            "net": "VCC_5V",
+            "number": "16"
+          },
+          {
+            "name": "AGND",
+            "net": "GND",
+            "number": "17"
+          },
+          {
+            "name": "EN3",
+            "net": null,
+            "number": "18"
+          },
+          {
+            "name": "VIN3",
+            "net": null,
+            "number": "19"
+          },
+          {
+            "name": "LX3",
+            "net": null,
+            "number": "20"
+          },
+          {
+            "name": "PAD",
+            "net": "GND",
+            "number": "21"
+          }
+        ],
+        "primitiveId": "d00c5897958c6099",
+        "supplierId": "C570857",
+        "uniqueId": "gge160",
+        "x": 715,
+        "y": 670
+      },
+      {
+        "componentType": "part",
+        "designator": "l1",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "L1008",
+          "uuid": "92734bcf7f6c6e8e"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "2",
+            "net": "VCC_3V3",
+            "number": "2"
+          },
+          {
+            "name": "1",
+            "net": "LX1",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "7d557b2318c778c2",
+        "supplierId": "C2835404",
+        "uniqueId": "gge161",
+        "x": 860,
+        "y": 755
+      },
+      {
+        "componentType": "part",
+        "designator": "l2",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "L1008",
+          "uuid": "92734bcf7f6c6e8e"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "2",
+            "net": "VCC_1V1",
+            "number": "2"
+          },
+          {
+            "name": "1",
+            "net": "LX2",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "f61fa8602be3ac37",
+        "supplierId": "C2835404",
+        "uniqueId": "gge162",
+        "x": 860,
+        "y": 620
+      },
+      {
+        "componentType": "part",
+        "designator": "TP3",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "Test-Point-0.5mm",
+          "uuid": "ab6114bb6b907f6b"
+        },
+        "name": "",
+        "pins": [
+          {
+            "name": "1",
+            "net": "VCC_3V3",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "ae5e3f73d03caee6",
+        "supplierId": "",
+        "uniqueId": "gge177",
+        "x": 980,
+        "y": 755
+      },
+      {
+        "componentType": "part",
+        "designator": "TP4",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "Test-Point-0.5mm",
+          "uuid": "ab6114bb6b907f6b"
+        },
+        "name": "",
+        "pins": [
+          {
+            "name": "1",
+            "net": "VCC_1V1",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "9e5950a029f38511",
+        "supplierId": "",
+        "uniqueId": "gge179",
+        "x": 980,
+        "y": 620
+      },
+      {
+        "componentType": "part",
+        "designator": "TP2",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "Test-Point-0.5mm",
+          "uuid": "ab6114bb6b907f6b"
+        },
+        "name": "",
+        "pins": [
+          {
+            "name": "1",
+            "net": "RTC_32K",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "e21eb021338e1a78",
+        "supplierId": "",
+        "uniqueId": "gge177_0",
+        "x": 1115,
+        "y": 1025
+      },
+      {
+        "componentType": "part",
+        "designator": "TP1",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "Test-Point-0.5mm",
+          "uuid": "ab6114bb6b907f6b"
+        },
+        "name": "",
+        "pins": [
+          {
+            "name": "1",
+            "net": "$1N6880",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "0737ae9199fb394a",
+        "supplierId": "",
+        "uniqueId": "gge177_2",
+        "x": 795,
+        "y": 1020
+      },
+      {
+        "componentType": "part",
+        "designator": "USB1",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "USB-C-SMD_TYPE-C16PIN",
+          "uuid": "9c56fdb181f3465cbd034ab8fa611e66"
+        },
+        "name": "={Manufacturer Part}",
+        "pins": [
+          {
+            "name": "GND",
+            "net": "GND",
+            "number": "A1B12"
+          },
+          {
+            "name": "VBUS",
+            "net": "VCC_5V",
+            "number": "A4B9"
+          },
+          {
+            "name": "CC1",
+            "net": "$1N6918",
+            "number": "A5"
+          },
+          {
+            "name": "DP1",
+            "net": "USB0_P",
+            "number": "A6"
+          },
+          {
+            "name": "DN1",
+            "net": "USB0_N",
+            "number": "A7"
+          },
+          {
+            "name": "SBU1",
+            "net": null,
+            "number": "A8"
+          },
+          {
+            "name": "CC2",
+            "net": "$1N6927",
+            "number": "B5"
+          },
+          {
+            "name": "DP2",
+            "net": "USB0_P",
+            "number": "B6"
+          },
+          {
+            "name": "DN2",
+            "net": "USB0_N",
+            "number": "B7"
+          },
+          {
+            "name": "SBU2",
+            "net": null,
+            "number": "B8"
+          },
+          {
+            "name": "VBUS",
+            "net": "VCC_5V",
+            "number": "B4A9"
+          },
+          {
+            "name": "GND",
+            "net": "GND",
+            "number": "B1A12"
+          },
+          {
+            "name": "SHELL",
+            "net": "GND",
+            "number": "1"
+          },
+          {
+            "name": "SHELL",
+            "net": "GND",
+            "number": "2"
+          },
+          {
+            "name": "SHELL",
+            "net": "GND",
+            "number": "3"
+          },
+          {
+            "name": "SHELL",
+            "net": "GND",
+            "number": "4"
+          }
+        ],
+        "primitiveId": "4f92a221d5c37f53",
+        "supplierId": "C393939",
+        "uniqueId": "gge31",
+        "x": 885,
+        "y": 335
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": {
+          "uuid": ""
+        },
+        "name": "VCC_5V",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "b3a11a0214996052",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 990,
+        "y": 375
+      },
+      {
+        "componentType": "netflag",
+        "designator": "",
+        "footprint": {
+          "uuid": ""
+        },
+        "name": "VCC_3V3",
+        "pins": [
+          {
+            "name": "Pin1",
+            "net": null,
+            "number": "1"
+          }
+        ],
+        "primitiveId": "b67c6aba01944aeb",
+        "supplierId": "",
+        "uniqueId": "",
+        "x": 985,
+        "y": 1025
+      },
+      {
+        "componentType": "part",
+        "designator": "U3",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "CONN-SMD_4P-P1.25_XUNPU_WAFER-GH1.25-4PWB",
+          "uuid": "997232862c05cd5e"
+        },
+        "name": "={Manufacturer Part}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "VCC_3V3",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "UART0_RX_DEBUG",
+            "number": "2"
+          },
+          {
+            "name": "3",
+            "net": "UART0_TX_DEBUG",
+            "number": "3"
+          },
+          {
+            "name": "4",
+            "net": "GND",
+            "number": "4"
+          },
+          {
+            "name": "5",
+            "net": null,
+            "number": "5"
+          },
+          {
+            "name": "6",
+            "net": null,
+            "number": "6"
+          }
+        ],
+        "primitiveId": "87c4e02b55cdd68a",
+        "supplierId": "C3029379",
+        "uniqueId": "gge189",
+        "x": 1390,
+        "y": 500
+      },
+      {
+        "componentType": "part",
+        "designator": "R2",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "R0603",
+          "uuid": "66b5884f9da849e2a2a943f2e2abb274"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "2",
+            "net": "VCC_3V3",
+            "number": "2"
+          },
+          {
+            "name": "1",
+            "net": "UART0_RX_DEBUG",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "ff50875b08968bf2",
+        "supplierId": "C23162",
+        "uniqueId": "gge24_0",
+        "x": 1320,
+        "y": 550
+      },
+      {
+        "componentType": "part",
+        "designator": "R3",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "R0603",
+          "uuid": "66b5884f9da849e2a2a943f2e2abb274"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "2",
+            "net": "VCC_3V3",
+            "number": "2"
+          },
+          {
+            "name": "1",
+            "net": "UART0_TX_DEBUG",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "cf4eafdb28fcb8a5",
+        "supplierId": "C23162",
+        "uniqueId": "gge23_0",
+        "x": 1355,
+        "y": 550
+      },
+      {
+        "componentType": "part",
+        "designator": "R5",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "R0603",
+          "uuid": "66b5884f9da849e2a2a943f2e2abb274"
+        },
+        "name": "={Value}",
+        "pins": [
+          {
+            "name": "2",
+            "net": "RTC_32K",
+            "number": "2"
+          },
+          {
+            "name": "1",
+            "net": "VCC_3V3",
+            "number": "1"
+          }
+        ],
+        "primitiveId": "fdb08535fc88a66a",
+        "supplierId": "C23162",
+        "uniqueId": "gge82",
+        "x": 1050,
+        "y": 1025
+      },
+      {
+        "componentType": "part",
+        "designator": "CN4",
+        "footprint": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "name": "CONN-SMD_10P-P1.25_SHOU-HAN_1.25-10P-WTDK",
+          "uuid": "5305f33310f70282"
+        },
+        "name": "={Manufacturer Part}",
+        "pins": [
+          {
+            "name": "1",
+            "net": "JTAG_CK",
+            "number": "1"
+          },
+          {
+            "name": "2",
+            "net": "JTAG_MS",
+            "number": "2"
+          },
+          {
+            "name": "3",
+            "net": "PA5_CAN0_RX",
+            "number": "3"
+          },
+          {
+            "name": "4",
+            "net": "PA4_CAN0_TX",
+            "number": "4"
+          },
+          {
+            "name": "5",
+            "net": "PE6_UART6_TX",
+            "number": "5"
+          },
+          {
+            "name": "6",
+            "net": "PE7_UART6_RX",
+            "number": "6"
+          },
+          {
+            "name": "7",
+            "net": "PE8_UART7_TX",
+            "number": "7"
+          },
+          {
+            "name": "8",
+            "net": "PE9_UART7_RX",
+            "number": "8"
+          },
+          {
+            "name": "9",
+            "net": "VCC_5V",
+            "number": "9"
+          },
+          {
+            "name": "10",
+            "net": "GND",
+            "number": "10"
+          },
+          {
+            "name": "11",
+            "net": null,
+            "number": "11"
+          },
+          {
+            "name": "12",
+            "net": null,
+            "number": "12"
+          }
+        ],
+        "primitiveId": "95ef63e5f27dfd72",
+        "supplierId": "C5340802",
+        "uniqueId": "gge190",
+        "x": 1390,
+        "y": 1015
+      }
+    ],
+    "floatingPinCount": 42,
+    "floatingPins": [
+      "U1.24",
+      "U1.25",
+      "U1.26",
+      "U1.27",
+      "U1.28",
+      "U1.29",
+      "U1.34",
+      "U1.35",
+      "U1.41",
+      "U1.42",
+      "U1.43",
+      "U1.44",
+      "U1.73",
+      "U1.77",
+      "U1.78",
+      "CN2.3",
+      "CN2.4",
+      "RST1.2",
+      "RST1.4",
+      "BOOT1.2",
+      "BOOT1.4",
+      "pwr1.2",
+      "pwr1.4",
+      "U4.3",
+      "U4.4",
+      "U4.5",
+      "U4.9",
+      "U4.10",
+      "CN1.3",
+      "CN1.4",
+      "CN1.7",
+      "CN1.8",
+      "U5.2",
+      "U5.18",
+      "U5.19",
+      "U5.20",
+      "USB1.A8",
+      "USB1.B8",
+      "U3.5",
+      "U3.6",
+      "CN4.11",
+      "CN4.12"
+    ],
+    "netCount": 79,
+    "netlistAvailable": true,
+    "nets": [
+      {
+        "degree": 3,
+        "isGlobal": false,
+        "net": "$1N6880",
+        "pins": [
+          "CN2.1",
+          "R4.2",
+          "TP1.1"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "$1N6918",
+        "pins": [
+          "R7.2",
+          "USB1.A5"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "$1N6927",
+        "pins": [
+          "R8.2",
+          "USB1.B5"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "CTP_INT",
+        "pins": [
+          "U1.38"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "CTP_RST",
+        "pins": [
+          "U1.37"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "CTP_SCL",
+        "pins": [
+          "U1.40"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "CTP_SDA",
+        "pins": [
+          "U1.39"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "DSI_CKN",
+        "pins": [
+          "U1.14"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "DSI_CKP",
+        "pins": [
+          "U1.13"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "DSI_D0N",
+        "pins": [
+          "U1.10"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "DSI_D0P",
+        "pins": [
+          "U1.9"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "DSI_D1N",
+        "pins": [
+          "U1.12"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "DSI_D1P",
+        "pins": [
+          "U1.11"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "DSI_D2N",
+        "pins": [
+          "U1.17"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "DSI_D2P",
+        "pins": [
+          "U1.16"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "DSI_D3N",
+        "pins": [
+          "U1.19"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "DSI_D3P",
+        "pins": [
+          "U1.18"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "DSI_EN",
+        "pins": [
+          "U1.23"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "DSI_RST",
+        "pins": [
+          "U1.22"
+        ]
+      },
+      {
+        "degree": 4,
+        "isGlobal": false,
+        "net": "FB1",
+        "pins": [
+          "68k.1",
+          "15k.2",
+          "C16.1",
+          "U5.14"
+        ]
+      },
+      {
+        "degree": 4,
+        "isGlobal": false,
+        "net": "FB2",
+        "pins": [
+          "47k.1",
+          "56k.2",
+          "C22.1",
+          "U5.3"
+        ]
+      },
+      {
+        "degree": 54,
+        "isGlobal": true,
+        "net": "GND",
+        "pins": [
+          "U1.89",
+          "X1.4",
+          "X1.2",
+          "C1.1",
+          "C4.2",
+          "C12.1",
+          "C14.1",
+          "C5.1",
+          "C6.1",
+          "C7.1",
+          "C8.1",
+          "C9.1",
+          "C10.1",
+          "C13.1",
+          "C15.1",
+          "C2.2",
+          "C3.2",
+          "CN2.2",
+          "RST1.1",
+          "BOOT1.1",
+          "pwr1.3",
+          "U4.8",
+          "CN1.6",
+          "15k.1",
+          "56k.1",
+          "R7.1",
+          "R8.1",
+          "C11.1",
+          "C17.1",
+          "C23.1",
+          "C20.1",
+          "C21.1",
+          "C18.1",
+          "C19.1",
+          "C24.1",
+          "C25.1",
+          "C33.1",
+          "C34.1",
+          "U5.1",
+          "U5.4",
+          "U5.5",
+          "U5.12",
+          "U5.13",
+          "U5.15",
+          "U5.17",
+          "U5.21",
+          "USB1.A1B12",
+          "USB1.B1A12",
+          "USB1.1",
+          "USB1.2",
+          "USB1.3",
+          "USB1.4",
+          "U3.4",
+          "CN4.10"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "I2S_BCLK",
+        "pins": [
+          "U1.53"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "I2S_DIN",
+        "pins": [
+          "U1.51"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "I2S_DOUT",
+        "pins": [
+          "U1.54"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "I2S_LRCK",
+        "pins": [
+          "U1.52"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "JTAG_CK",
+        "pins": [
+          "U1.80",
+          "CN4.1"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "JTAG_MS",
+        "pins": [
+          "U1.79",
+          "CN4.2"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "LCD_PWM",
+        "pins": [
+          "U1.33"
+        ]
+      },
+      {
+        "degree": 3,
+        "isGlobal": false,
+        "net": "LDO25",
+        "pins": [
+          "U1.70",
+          "C12.2",
+          "C13.2"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "LX1",
+        "pins": [
+          "U5.11",
+          "l1.1"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "LX2",
+        "pins": [
+          "U5.6",
+          "l2.1"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "PA_ON",
+        "pins": [
+          "U1.74"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "PA4_CAN0_TX",
+        "pins": [
+          "U1.75",
+          "CN4.4"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "PA5_CAN0_RX",
+        "pins": [
+          "U1.76",
+          "CN4.3"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "PE4_UART5_TX",
+        "pins": [
+          "U1.45",
+          "CN1.2"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "PE5_UART5_RX",
+        "pins": [
+          "U1.46",
+          "CN1.1"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "PE6_UART6_TX",
+        "pins": [
+          "U1.47",
+          "CN4.5"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "PE7_UART6_RX",
+        "pins": [
+          "U1.48",
+          "CN4.6"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "PE8_UART7_TX",
+        "pins": [
+          "U1.49",
+          "CN4.7"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "PE9_UART7_RX",
+        "pins": [
+          "U1.50",
+          "CN4.8"
+        ]
+      },
+      {
+        "degree": 4,
+        "isGlobal": false,
+        "net": "PMIC_EN",
+        "pins": [
+          "pwr1.1",
+          "R6.1",
+          "U5.8",
+          "U5.9"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "RESET",
+        "pins": [
+          "U1.67",
+          "RST1.3"
+        ]
+      },
+      {
+        "degree": 3,
+        "isGlobal": false,
+        "net": "RTC_32K",
+        "pins": [
+          "U1.83",
+          "TP2.1",
+          "R5.2"
+        ]
+      },
+      {
+        "degree": 3,
+        "isGlobal": false,
+        "net": "RTC_VCOIN",
+        "pins": [
+          "U1.84",
+          "R4.1",
+          "C11.2"
+        ]
+      },
+      {
+        "degree": 4,
+        "isGlobal": false,
+        "net": "RTC_X0",
+        "pins": [
+          "U1.85",
+          "X2.1",
+          "C3.1",
+          "R1.1"
+        ]
+      },
+      {
+        "degree": 4,
+        "isGlobal": false,
+        "net": "RTC_XI",
+        "pins": [
+          "U1.86",
+          "X2.2",
+          "C2.1",
+          "R1.2"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SDC0_CLK",
+        "pins": [
+          "U1.62"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SDC0_CMD",
+        "pins": [
+          "U1.61"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SDC0_D0",
+        "pins": [
+          "U1.64"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SDC0_D1",
+        "pins": [
+          "U1.65"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SDC0_D2",
+        "pins": [
+          "U1.66"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SDC0_D3",
+        "pins": [
+          "U1.63"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SDC1_CLK",
+        "pins": [
+          "U1.3"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SDC1_CMD",
+        "pins": [
+          "U1.4"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SDC1_D0",
+        "pins": [
+          "U1.2"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SDC1_D1",
+        "pins": [
+          "U1.1"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SDC1_D2",
+        "pins": [
+          "U1.6"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SDC1_D3",
+        "pins": [
+          "U1.5"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SDC1_DET",
+        "pins": [
+          "U1.7"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SPI0_CLK",
+        "pins": [
+          "U1.59"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SPI0_CS",
+        "pins": [
+          "U1.57"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SPI0_HOLD",
+        "pins": [
+          "U1.58"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SPI0_MISO",
+        "pins": [
+          "U1.56"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SPI0_MOSI",
+        "pins": [
+          "U1.60"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "SPI0_WP",
+        "pins": [
+          "U1.55"
+        ]
+      },
+      {
+        "degree": 3,
+        "isGlobal": false,
+        "net": "UART0_RX_DEBUG",
+        "pins": [
+          "U1.72",
+          "U3.2",
+          "R2.1"
+        ]
+      },
+      {
+        "degree": 4,
+        "isGlobal": false,
+        "net": "UART0_TX_DEBUG",
+        "pins": [
+          "U1.71",
+          "BOOT1.3",
+          "U3.3",
+          "R3.1"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "UART2_RX",
+        "pins": [
+          "U1.20",
+          "U4.6"
+        ]
+      },
+      {
+        "degree": 2,
+        "isGlobal": false,
+        "net": "UART2_TX",
+        "pins": [
+          "U1.21",
+          "U4.7"
+        ]
+      },
+      {
+        "degree": 3,
+        "isGlobal": false,
+        "net": "USB0_N",
+        "pins": [
+          "U1.87",
+          "USB1.A7",
+          "USB1.B7"
+        ]
+      },
+      {
+        "degree": 3,
+        "isGlobal": false,
+        "net": "USB0_P",
+        "pins": [
+          "U1.88",
+          "USB1.A6",
+          "USB1.B6"
+        ]
+      },
+      {
+        "degree": 13,
+        "isGlobal": true,
+        "net": "VCC_1V1",
+        "pins": [
+          "U1.8",
+          "U1.30",
+          "U1.68",
+          "C5.2",
+          "C6.2",
+          "C7.2",
+          "47k.2",
+          "C22.2",
+          "C23.2",
+          "C24.2",
+          "C25.2",
+          "l2.2",
+          "TP4.1"
+        ]
+      },
+      {
+        "degree": 3,
+        "isGlobal": true,
+        "net": "VCC_1V8",
+        "pins": [
+          "U1.31",
+          "C14.2",
+          "C15.2"
+        ]
+      },
+      {
+        "degree": 18,
+        "isGlobal": true,
+        "net": "VCC_3V3",
+        "pins": [
+          "U1.15",
+          "U1.36",
+          "U1.69",
+          "C8.2",
+          "C9.2",
+          "C10.2",
+          "U4.1",
+          "68k.2",
+          "C16.2",
+          "C17.2",
+          "C18.2",
+          "C19.2",
+          "l1.2",
+          "TP3.1",
+          "U3.1",
+          "R2.2",
+          "R3.2",
+          "R5.1"
+        ]
+      },
+      {
+        "degree": 13,
+        "isGlobal": true,
+        "net": "VCC_5V",
+        "pins": [
+          "U4.2",
+          "CN1.5",
+          "R6.2",
+          "C20.2",
+          "C21.2",
+          "C33.2",
+          "C34.2",
+          "U5.7",
+          "U5.10",
+          "U5.16",
+          "USB1.A4B9",
+          "USB1.B4A9",
+          "CN4.9"
+        ]
+      },
+      {
+        "degree": 1,
+        "isGlobal": false,
+        "net": "WIFI_ON",
+        "pins": [
+          "U1.32"
+        ]
+      },
+      {
+        "degree": 3,
+        "isGlobal": false,
+        "net": "X24MIN",
+        "pins": [
+          "U1.82",
+          "X1.1",
+          "C4.1"
+        ]
+      },
+      {
+        "degree": 3,
+        "isGlobal": false,
+        "net": "X24MOUT",
+        "pins": [
+          "U1.81",
+          "X1.3",
+          "C1.2"
+        ]
+      }
+    ]
+  },
+  "context": {
+    "projectUuid": "3de943d300544f9eb6fdb9239b3b6c65",
+    "projectName": "mipiPI-40pin MIPI屏幕开发板",
+    "documentUuid": "b56e6a6297354fc387429cd40a2ed359",
+    "documentType": "schematic",
+    "tabId": "b56e6a6297354fc387429cd40a2ed359@3de943d300544f9eb6fdb9239b3b6c65",
+    "pageVisibility": "hidden"
+  },
+  "mutationContext": {
+    "projectUuid": "3de943d300544f9eb6fdb9239b3b6c65",
+    "projectName": "mipiPI-40pin MIPI屏幕开发板",
+    "documentUuid": "b56e6a6297354fc387429cd40a2ed359",
+    "documentType": "schematic",
+    "tabId": "b56e6a6297354fc387429cd40a2ed359@3de943d300544f9eb6fdb9239b3b6c65",
+    "pageVisibility": "hidden"
+  },
+  "mutationContextAvailable": true,
+  "seq": 17,
+  "seqAbandoned": 0
+}

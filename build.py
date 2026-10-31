@@ -51,6 +51,26 @@ def safe_remove(path):
     shutil.rmtree(path)
 
 
+def variant_board_dir(variant):
+    return variant.get('board_dir', 'display-nor')
+
+
+def pick_boot_variant(variants, chip, board_dir):
+    """Pick the variant whose timing drives the shared bootloader's framebuffer.
+
+    Prefer a graph that the existing NOR flow used ('txw935003b'), else fall back
+    to any variant on the same chip + board_dir (its FIRMWARE_* timing still
+    drives the bootloader display)."""
+    same_board = [v for v in variants.values()
+                  if v['chip'] == chip and variant_board_dir(v) == board_dir]
+    if not same_board:
+        return None
+    for v in same_board:
+        if 'txw935003b' in v['graph']:
+            return v
+    return same_board[0]
+
+
 def configure(graph_name, variant, out):
     config = out / 'config'
     config.mkdir(parents=True, exist_ok=True)
@@ -85,7 +105,8 @@ def build_elf(graph_name, variant, jobs, output_name=None):
     out.mkdir(parents=True, exist_ok=True)
     config = configure(graph_name, variant, out)
     chip = variant['chip']
-    image_cfg = ROOT / 'target' / chip / 'display-nor/pack/image_cfg.json'
+    board_dir = variant_board_dir(variant)
+    image_cfg = ROOT / 'target' / chip / board_dir / 'pack/image_cfg.json'
     helper('gen_partition_table.py', '-c', image_cfg, '-o', config / 'partition_table.h',
            '-j', out / 'partition.json')
     helper('gen_partition_file_list.py', '-c', image_cfg, '-o', out / 'partition_file_list.h')
@@ -156,8 +177,10 @@ def variant_assets(variant):
 
 def pack(variant_id, variant, out, config, boot_out):
     chip = variant['chip']
-    pack_dir = ROOT / 'target' / chip / 'display-nor/pack'
+    board_dir = variant_board_dir(variant)
+    pack_dir = ROOT / 'target' / chip / board_dir / 'pack'
     cfg = json.loads((pack_dir / 'image_cfg.json').read_text())
+    media = cfg['image']['info']['media']['type']
     header = (boot_out / 'config/rtconfig.h').read_text()
     match = re.search(r'^#define AIC_BOOTLOADER_TEXT_BASE\s+(.+)$', header, re.M)
     text_base = int(match.group(1).strip('() '), 0)
@@ -179,6 +202,14 @@ def pack(variant_id, variant, out, config, boot_out):
     helper('makefatfs.py', '--fullpart', '--volab', 'default', '--cluster', '8', '--sector', '512',
            '--tooldir', str(TOOLS) + '/', '--inputdir', assets_dir,
            '--outfile', out / 'rodata.fatfs', '--reserved', '50')
+    if media == 'spi-nand':
+        # The writable data partition is an NFTL volume; ship an empty FAT so
+        # /data mounts and the app can create udisp.cfg at runtime. makefatfs
+        # --fullpart on empty input yields an empty-but-valid FAT image.
+        with tempfile.TemporaryDirectory(prefix='udisp-data-') as data_root:
+            helper('makefatfs.py', '--fullpart', '--volab', 'default', '--cluster', '2', '--sector', '512',
+                   '--tooldir', str(TOOLS) + '/', '--inputdir', data_root,
+                   '--outfile', out / 'data.fatfs', '--reserved', '50')
     helper('mk_private_resource.py', '-l', str(out / 'pbp_cfg.json') + ',' + str(out / 'partition.json'),
            '-o', out / 'pbp_cfg.bin')
     if chip == 'd12p':
@@ -215,11 +246,30 @@ def verify_image(image_path, out, variant):
         run([TOOLS / 'mcopy.exe', '-i', out / 'rodata.fatfs', '::/video/video.bin', 'video.bin'], cwd=temp)
         if sha(pathlib.Path(temp) / 'video.bin') != sha(ROOT / variant_assets(variant) / 'video/video.bin'):
             raise ValueError('Packaged idle video mismatch')
-    cfg = json.loads((out / 'image_cfg.json').read_text())['spi-nor']
+    cfg = json.loads((out / 'image_cfg.json').read_text())
+    media = cfg['image']['info']['media']['type']
+    if media not in cfg:
+        raise ValueError('image_cfg has no media section: ' + media)
+    media_cfg = cfg[media]
     sizes = {'k': 1024, 'm': 1048576}
-    total = sum(int(p['size'][:-1]) * sizes[p['size'][-1]] for p in cfg['partitions'].values())
-    if cfg['size'] != '32m' or total > 32 * 1048576:
-        raise ValueError('NOR partitions exceed 32 MiB')
+    total = sum(int(p['size'][:-1]) * sizes[p['size'][-1]]
+                for p in media_cfg['partitions'].values() if 'size' in p)
+    size_str = media_cfg['size']
+    limit = int(size_str[:-1]) * sizes[size_str[-1]]
+    if total > limit:
+        raise ValueError('{} partitions ({}) exceed {}'.format(media, total, size_str))
+    if media == 'spi-nor':
+        if size_str != '32m':
+            raise ValueError('Unexpected NOR media size: ' + size_str)
+    elif media == 'spi-nand':
+        # NAND partitions must be whole 128k blocks (device array organization).
+        block = 128 * 1024
+        for name, part in media_cfg['partitions'].items():
+            if 'size' not in part:
+                continue
+            size_b = int(part['size'][:-1]) * sizes[part['size'][-1]]
+            if size_b % block:
+                raise ValueError('NAND partition {} not block-aligned: {}'.format(name, part['size']))
 
 
 def main():
@@ -280,13 +330,18 @@ def main():
         for variant_id in selected:
             variant = variants[variant_id]
             chip = variant['chip']
-            if chip not in bootloaders:
-                print('BOOT ' + chip, flush=True)
-                boot_variant = next(v for v in variants.values() if v['chip'] == chip and 'txw935003b' in v['graph'])
-                bootloaders[chip], _ = build_elf(chip + '_display-nor_baremetal_bootloader', boot_variant, args.jobs)
+            board_dir = variant_board_dir(variant)
+            key = (chip, board_dir)
+            if key not in bootloaders:
+                print('BOOT ' + chip + '/' + board_dir, flush=True)
+                boot_variant = pick_boot_variant(variants, chip, board_dir)
+                if boot_variant is None:
+                    parser.error('No bootloader variant for {} {}'.format(chip, board_dir))
+                boot_graph = chip + '_' + board_dir + '_baremetal_bootloader'
+                bootloaders[key], _ = build_elf(boot_graph, boot_variant, args.jobs)
             print('BUILD ' + variant_id, flush=True)
             out, config = build_elf(variant['graph'], variant, args.jobs, variant_id)
-            results.append(pack(variant_id, variant, out, config, bootloaders[chip]))
+            results.append(pack(variant_id, variant, out, config, bootloaders[key]))
             print('OK ' + variant_id, flush=True)
         (ROOT / 'images/manifest.json').write_text(json.dumps(results, indent=2) + '\n')
         print('All selected images verified.', flush=True)

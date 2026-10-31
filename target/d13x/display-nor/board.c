@@ -244,7 +244,10 @@ const struct dfs_mount_tbl mount_table[] = {
     defined(AIC_USING_FS_IMAGE_TYPE_FATFS_FOR_1)
     {"blk_rodata", "/rodata", "elm", MS_RDONLY, 0, DFS_MOUNT_PRIO_EARLY},
 #endif
-#ifdef LPKG_USING_LITTLEFS
+#if defined(AIC_QSPI0_DEVICE_SPINAND)
+    /* SPI NAND: /data is a writable NFTL-backed FAT block device (blk_data). */
+    {"blk_data", "/data", "elm", 0, 0, DFS_MOUNT_PRIO_EARLY},
+#elif defined(LPKG_USING_LITTLEFS)
     {"data", "/data", "lfs", 0, 0, DFS_MOUNT_PRIO_EARLY},
 #endif
     {0}

@@ -5,7 +5,8 @@
  */
 #include <string.h>
 #include <stdio.h>
-#include <fal.h>
+#include <rtthread.h>
+#include <rtdevice.h>
 #include "usbdisp.h"
 #include "usbd_core.h"
 #include "usbd_vender.h"
@@ -29,7 +30,8 @@ static struct udisp_frame *current;
 static uint32_t skip_remaining, sequence;
 static volatile bool configured;
 static struct usbd_interface vendor, hid, msc;
-static const struct fal_partition *assets;
+static rt_device_t rodata_blk;
+static rt_uint32_t rodata_sectors;
 static uint8_t descriptor[512];
 static uint8_t hid_report[512];
 static uint32_t hid_report_size;
@@ -343,20 +345,19 @@ uint8_t *udisp_idle_buffer(void) { return frames[0].data; }
 void usbd_msc_get_cap(uint8_t busid, uint8_t lun, uint32_t *count, uint32_t *size)
 {
     (void)busid; (void)lun;
-    *size = 512; *count = assets ? assets->len / 512 : 0;
+    *size = 512; *count = rodata_blk ? rodata_sectors : 0;
 }
 
-bool usbd_msc_check_storage(void) { return assets != NULL; }
+bool usbd_msc_check_storage(void) { return rodata_blk != RT_NULL; }
 
 int usbd_msc_sector_read(uint8_t busid, uint8_t lun, uint32_t sector,
                          uint8_t *data, uint32_t length)
 {
-    uint32_t offset;
+    rt_size_t n;
     (void)busid; (void)lun;
-    if (!assets || sector > assets->len / 512) return -1;
-    offset = sector * 512;
-    if (length > assets->len - offset) return -1;
-    return fal_partition_read(assets, offset, data, length) == length ? 0 : -1;
+    if (!rodata_blk || (length & (512U - 1U))) return -1;
+    n = rt_device_read(rodata_blk, sector, data, length / 512U);
+    return n == (rt_size_t)(length / 512U) ? 0 : -1;
 }
 
 int usbd_msc_sector_write(uint8_t busid, uint8_t lun, uint32_t sector,
@@ -368,10 +369,16 @@ int usbd_msc_sector_write(uint8_t busid, uint8_t lun, uint32_t sector,
 
 int udisp_transport_start(void)
 {
+    struct rt_device_blk_geometry geom;
     int i;
     if (started) return 0;
-    assets = fal_partition_find("rodata");
-    if (!assets) return -1;
+    rodata_blk = rt_device_find("blk_rodata");
+    if (!rodata_blk) return -1;
+    rt_device_open(rodata_blk, RT_DEVICE_OFLAG_RDWR);
+    rodata_sectors = 0;
+    if (rt_device_control(rodata_blk, RT_DEVICE_CTRL_BLK_GETGEOME, &geom) == RT_EOK)
+        rodata_sectors = geom.sector_count;
+    if (!rodata_sectors) return -1;
     for (i = 0; i < UDISP_FRAME_COUNT; i++) {
         frames[i].data = aicos_malloc_align(MEM_CMA, UDISP_FRAME_LIMIT, CACHE_LINE_SIZE);
         if (!frames[i].data) goto fail;

@@ -1,0 +1,57 @@
+﻿{
+  "id": "req_39",
+  "type": "response",
+  "version": "v1",
+  "windowId": "b7cdc9c2-d2e5-487a-bc5c-faf2c1102b53",
+  "createdAt": "2026-10-30T12:47:59.6837036Z",
+  "ok": true,
+  "result": {
+    "count": 2,
+    "scope": "activePage",
+    "texts": [
+      {
+        "bold": null,
+        "color": null,
+        "content": "LCD背光横流",
+        "fontName": null,
+        "fontSize": 30,
+        "italic": null,
+        "primitiveId": "e74",
+        "rotation": 0,
+        "x": 385,
+        "y": 635
+      },
+      {
+        "bold": null,
+        "color": "#FF0000",
+        "content": "FB电阻计算公式R=200/背光电流（mA）",
+        "fontName": null,
+        "fontSize": 15,
+        "italic": null,
+        "primitiveId": "e75",
+        "rotation": 0,
+        "x": 385,
+        "y": 615
+      }
+    ]
+  },
+  "context": {
+    "projectUuid": "3de943d300544f9eb6fdb9239b3b6c65",
+    "projectName": "mipiPI-40pin MIPI屏幕开发板",
+    "documentUuid": "66bd5cea9c674716a9e7b732bdfe4151",
+    "documentType": "schematic",
+    "tabId": "66bd5cea9c674716a9e7b732bdfe4151@3de943d300544f9eb6fdb9239b3b6c65",
+    "pageVisibility": "hidden"
+  },
+  "mutationContext": {
+    "projectUuid": "3de943d300544f9eb6fdb9239b3b6c65",
+    "projectName": "mipiPI-40pin MIPI屏幕开发板",
+    "documentUuid": "66bd5cea9c674716a9e7b732bdfe4151",
+    "documentType": "schematic",
+    "tabId": "66bd5cea9c674716a9e7b732bdfe4151@3de943d300544f9eb6fdb9239b3b6c65",
+    "pageVisibility": "hidden"
+  },
+  "mutationContextAvailable": true,
+  "seq": 30,
+  "seqAbandoned": 0
+}

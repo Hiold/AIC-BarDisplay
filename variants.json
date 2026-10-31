@@ -197,6 +197,52 @@
       "ln_polrs": 0
     }
   },
+  "d133-mipipi-ek79030": {
+    "chip": "d13x",
+    "board_dir": "display-nand",
+    "graph": "d13x_display-mipipi-ek79030_rt-thread_usbdisp",
+    "product": "d13x-usbdisp-mipipi-ek79030",
+    "version": "1.0.0",
+    "fps": 60,
+    "jpeg_quality": 6,
+    "timing": {
+      "width": 480,
+      "height": 1280,
+      "pixelclock": 64400000,
+      "hfront_porch": 160,
+      "hback_porch": 160,
+      "hsync_len": 24,
+      "vfront_porch": 12,
+      "vback_porch": 10,
+      "vsync_len": 2,
+      "lane_num": 4,
+      "ln_assign": 291,
+      "ln_polrs": 0
+    }
+  },
+  "d133-mipipi-boe1126": {
+    "chip": "d13x",
+    "board_dir": "display-nand",
+    "graph": "d13x_display-mipipi-boe1126_rt-thread_usbdisp",
+    "product": "d13x-usbdisp-mipipi-boe1126",
+    "version": "1.0.0",
+    "fps": 60,
+    "jpeg_quality": 6,
+    "timing": {
+      "width": 440,
+      "height": 1920,
+      "pixelclock": 65856000,
+      "hfront_porch": 50,
+      "hback_porch": 50,
+      "hsync_len": 20,
+      "vfront_porch": 16,
+      "vback_porch": 20,
+      "vsync_len": 4,
+      "lane_num": 4,
+      "ln_assign": 291,
+      "ln_polrs": 0
+    }
+  },
   "d133-cwd686": {
     "chip": "d13x",
     "graph": "d13x_display-cwd686_rt-thread_usbdisp",
