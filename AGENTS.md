@@ -17,7 +17,8 @@
 | MCU 频率 | 480 MHz 核 / AXI0 200 MHz / AHB0 200 MHz / APB0 100 MHz | `AIC_CLK_*_FREQ` |
 | PSRAM | 8 MiB（`AIC_PSRAM_SIZE 0x800000`） | 关键资源，几乎一切显示缓冲都在此 |
 | SRAM | 512 KiB（`AIC_SRAM_TOTAL_SIZE 0x80000`） | 引导 / 堆栈 |
-| SPI NOR | 32 MiB（Q256），四线 | 代码 + 只读 FAT 资源盘 + 可写设置 |
+| SPI NOR | 32 MiB（Q256），四线 | **默认**存储：代码 + 只读 FAT 资源盘 + 可写设置（display-nor 板） |
+| SPI NAND | 128 MiB（W25N01GV，Winbond） | **mipiPI 板（display-nand）**专用存储，2k 页/128k 块/64B OOB |
 | 芯片代号 | `d12p` = D125，`d13x` = D133 | 两套 SoC，启动/HAL 各自独立目录 |
 
 **内存铁律**：PSRAM 仅 8 MiB（CMA 可用约 7 MiB）。480×1920 全屏 RGB888 framebuffer ≈ 2.64 MiB，两份 NV12 解码表面 ≈ 2.64 MiB，双槽 JPEG RX ≈ 0.57 MiB，再加 1 MiB 软件保留区——**内存预算几乎封顶**。任何"再加一份全屏缓冲 / 放大 framebuffer"的事件几乎必然 OOM、导致屏不亮 + USB 不识别（见 `doc/横屏显示设计说明.md` 的失败教训）。**改内存布局必须先在 8 MiB 预算内复核**。
@@ -25,10 +26,11 @@
 ### 1.2 两级固件 Boot 流
 
 ```
-SPI NOR ──> tinySPL bootloader (baremetal) ──> 应用固件 (RT-Thread)
+SPI NOR  ──> tinySPL bootloader (baremetal) ──> 应用固件 (RT-Thread)   [display-nor 板]
+SPI NAND ──> tinySPL bootloader (baremetal) ──> 应用固件 (RT-Thread)   [display-nand / mipiPI 板]
 ```
 
-- **bootloader**：`application/baremetal/bootloader/`，baremetal 运行，负责上电初始化（时钟/pinmux/内存/控制台/UART）、检测升级模式（AICUPG）、按分区启动应用。同芯片三款屏共用一套 bootloader（`build.py` 中每芯片只编一次）。
+- **bootloader**：`application/baremetal/bootloader/`，baremetal 运行，负责上电初始化（时钟/pinmux/内存/控制台/UART）、检测升级模式（AICUPG）、按分区启动应用。同芯片按**存储媒体**各自编一份：`_display-nor_baremetal_bootloader`（SFUD/SFUD-NOR）与 `_display-nand_baremetal_bootloader`（spinand + nand_fwc），`build.py` 按 `board_dir` 选择并跨变体缓存一份（mipiPI/NAND 板共用一个 NAND bootloader）。
 - **应用固件**：RT-Thread，含三种应用形态：
   - `usbdisp`：USB 副屏（主机 JPEG 流 + 空闲视频）。
   - `cdcdebug`：USB-CDC 控制台调屏固件（无 usbdisp）。
@@ -44,7 +46,9 @@ LVGL ARGB8888 UI 窗口 ----像素 Alpha----> DE 视频+UI 图层合成 --> MIPI
 
 关键设计：**传输与解码分离**（USB 回调不做内存分配/阻塞/解码）；**硬件解码**（VE）；**原生分辨率**声明；**逐像素合成**（UI 与 NV12 视频独立）；**受控内存生命周期**（空闲视频复用 RX/解码资源）。
 
-### 1.4 存储分区（32 MiB NOR）
+### 1.4 存储分区
+
+**SPI NOR（32 MiB，display-nor 板）：**
 
 | 分区 | 大小 | 用途 |
 | --- | --- | --- |
@@ -56,6 +60,8 @@ LVGL ARGB8888 UI 窗口 ----像素 Alpha----> DE 视频+UI 图层合成 --> MIPI
 | `data` | 1 MiB | 可写设置区 |
 
 精确布局以 `target/<chip>/display-nor/pack/image_cfg.json` 为准。**rodata 分区上限 27 MiB + os 等，构建时会校验总和不超 32 MiB**。
+
+**SPI NAND（128 MB，mipiPI / display-nand 板）：** 精确分区以 `target/<chip>/display-nand/pack/image_cfg.json` 为准：`spl 1m / env/env_r 256k / os 4m / rodata 40m / data 16m`，`rodata` 走原始 MTD（驱动内 ECC），`data` 走 NFTL 卷（可写）。芯片按 **2k 页 / 128k 块 / 64B OOB** 几何，`verify_image` 校验 128 MiB 总量与块对齐。
 
 ---
 
@@ -150,6 +156,8 @@ build.cmd --clean                       :: 清 build/ 与 images/
 | `d133-boe1126` | d13x | BOE1126 | 440×1920 | 正式副屏 |
 | `d133-av092k5u` | d13x | AV092K5U | 462×1920 | 正式副屏 |
 | `d133-cwd686` | d13x | CWD686 | 480×1280 | 正式副屏 |
+| `d133-mipipi-ek79030` | d13x | EK79030 | 480×1280 | 正式副屏（**display-nand**/mipiPI 板） |
+| `d133-mipipi-boe1126` | d13x | BOE1126 | 440×1920 | 正式副屏（**display-nand**/mipiPI 板） |
 | `d133-boe-av093x` | d13x | AV093X 320×1280 | 320×1280 | 正式副屏（自有 assets_av093x） |
 | `d133-boe-av093x-dash` | d13x | AV093X | 320×1280 | **电摩仪表**（dashdisp） |
 | `d133-boe1126-cdc` | d13x | BOE1126 | 440×1920 | USB-CDC 调屏 |
@@ -158,6 +166,17 @@ build.cmd --clean                       :: 清 build/ 与 images/
 | `d133-boe-av093x-cdc` | d13x | AV093X | 320×1280 | AV093X 调屏 |
 
 派生变体（CDC/AV093X/测试）由 `tools/gen_*_variant.py` 脚本从正式变体生成，可重复运行，**增量修改时优先沿用脚本而不是手抄**。
+
+### 4.1 mipiPI 板（display-nand / SPI-NAND）专项
+
+`d133-mipipi-*` 是 **mipiPI 40-pin 开发板 + SPI-NAND（128 MB Winbond W25N01GV）** 的变体，与通用的 display-nor（32 MiB SPI NOR）板有几处务必记住的差异：
+
+- **`board_dir: "display-nand"`**：`variants.json` 用 `board_dir` 选择存储媒体；`build.py` 据此挑 NAND bootloader（`_display-nand_baremetal_bootloader`）、pack 目录（`target/<chip>/display-nand/pack/image_cfg.json`）并走 SPI-NAND 打包/校验。
+- **board/pinmux/sys_clk 复用 display-nor**：display-nand 的 graph（含 NAND bootloader graph）编译的是 **`target/d13x/display-nor/board.c / pinmux.c / sys_clk.c`**——mipiPI 板的引脚/PSRAM/时钟与 display-nor 一致，只是存储后端走 NAND。改板级 only 注意别只改 nor 文件名就以为生效。
+- **厂商宏必须无 `CONFIG_` 前缀**：`bsp/peripheral/spinand/spinand.c:25` 和 `inc/spinand.h:237` 检查的是 `#ifdef SPI_NAND_WINBOND`（无前缀）。config 头若只写 `CONFIG_SPI_NAND_WINBOND`，Winbond 厂商表不会编入 → `spinand_info_read()` 报 `unknown raw ID efaa2100` → probe 失败 → 烧录 `image.target.spl` 时 `Failed to get block size!`。**两个 config 头都要同时保留 `CONFIG_SPI_NAND_WINBOND` 与 `SPI_NAND_WINBOND`**（bootloader + 应用各一份）。
+- **NAND 升级后端**：bootloader 走 `lib/aicupg/nand_fwc*.c`（`image.info`→`image.updater.spl`→`image.target.*`），镜像头 `spi-nand` + 2k/128k/64B 几何；`data` 分区走 NFTL。
+- **console 用 UART6**：mipiPI/NAND 变体（bootloader 与 PBP）把日志输出在 **UART6（PE.6/PE.7）**，而 Luban 参考 mipiPI 用 UART0。接串口排错时务必接 UART6；AICUPG 烧录失败时可用 `md 0x30040000 0x300 0` 回读 SRAM log buffer（`AICUPG_LOG_BUFFER_SUPPORT` 已开，`printf` 同时写 RAM）。
+- **面板 GPIO 按具体屏**：`d133-mipipi-ek79030` 用 EK79030（PD.14=RST/使能、backlight PD.6）；`d133-mipipi-boe1126` 用 FL7707 BOE1126（`AIC_PANEL_FL7707_BOE1126_B_*`）。**不要把 NOR 板上其它屏幕的 GPIO 盲抄过来**——mipiPI 板接线固定，屏从 ek79030 换到 boe1126 时 GPIO 应沿用 mipiPI 板实际脚位。
 
 ---
 

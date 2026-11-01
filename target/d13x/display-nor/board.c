@@ -250,6 +250,10 @@ const struct dfs_mount_tbl mount_table[] = {
 #elif defined(LPKG_USING_LITTLEFS)
     {"data", "/data", "lfs", 0, 0, DFS_MOUNT_PRIO_EARLY},
 #endif
+#if defined(AIC_USING_SDMC1) && defined(AIC_QSPI0_DEVICE_SPINAND)
+    /* mipi-pi (SPI-NAND) board: SD card (sd1) automount at /sdcard. */
+    {"sd1", "/sdcard", "elm", 0, 0, DFS_MOUNT_PRIO_EARLY},
+#endif
     {0}
 };
 #endif

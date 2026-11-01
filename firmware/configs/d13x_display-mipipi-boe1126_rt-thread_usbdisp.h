@@ -26,14 +26,11 @@
 
 /* Filesystem related */
 
-#define AIC_USING_FS_IMAGE_0
-#define AIC_USING_FS_IMAGE_TYPE_FATFS_FOR_0
-#define AIC_FS_IMAGE_DIR_0 "application/rt-thread/usbdisp/assets"
-#define AIC_FS_IMAGE_NAME_0 "rodata.fatfs"
-#define AIC_FATFS_AUTO_SIZE_FOR_0
-#define AIC_FATFS_DEFAULT_VOLAB_0
-#define AIC_USING_FS_IMAGE_TYPE_FATFS_CLUSTER_SIZE 8
-#define AIC_USING_DIRENT_CACHE_FOR_READ_ONLY_FATFS
+/* mipiPI / SPI-NAND variant: no on-flash rodata resource partition. The idle
+ * video is sourced from the SD card ("/sdcard/video") and the USB-MSC resource
+ * disk is disabled, so no FAT image / FS-image-0 macros are defined. */
+#define AIC_USB_DISP_NO_RODATA
+/* end of Filesystem related */
 
 /* LVGL demo select related */
 
@@ -43,7 +40,7 @@
 #define LPKG_LVGL_THREAD_PRIO 20
 #define LPKG_LVGL_THREAD_STACK_SIZE 12288
 #define LPKG_LVGL_DISP_REFR_PERIOD 5
-#define LVGL_STORAGE_PATH "/rodata/lvgl_data"
+#define LVGL_STORAGE_PATH "/sdcard/lvgl_data"
 /* end of Application options */
 
 /* Chip options */

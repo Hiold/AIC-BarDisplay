@@ -69,11 +69,32 @@ int main(void)
     unsigned long cma_bytes;
     unsigned long nv12_bytes;
     for (retries = 0; retries < 200; retries++) {
-        struct dfs_filesystem *fs = dfs_filesystem_lookup("/rodata");
-        if (fs && fs->path && !strcmp(fs->path, "/rodata")) break;
+        struct dfs_filesystem *fs;
+#ifdef AIC_USB_DISP_NO_RODATA
+        /* No on-flash rodata; the idle video comes from the SD card instead. */
+        fs = dfs_filesystem_lookup("/sdcard");
+#else
+        fs = dfs_filesystem_lookup("/rodata");
+#endif
+        if (fs && fs->path && !strcmp(fs->path,
+#ifdef AIC_USB_DISP_NO_RODATA
+            "/sdcard"
+#else
+            "/rodata"
+#endif
+        )) break;
         aicos_msleep(10);
     }
-    if (retries == 200) { printf("usbdisp: assets mount failed\n"); return -1; }
+    if (retries == 200) {
+#ifdef AIC_USB_DISP_NO_RODATA
+        /* No SD card present is not fatal: the idle video simply stays off
+         * until /sdcard appears (udisp_video_open() returns -1 gracefully). */
+        printf("usbdisp: /sdcard not mounted; idle video disabled\n");
+#else
+        printf("usbdisp: assets mount failed\n");
+        return -1;
+#endif
+    }
     udisp_fb = mpp_fb_open();
     if (!udisp_fb || mpp_fb_ioctl(udisp_fb, AICFB_GET_SCREENINFO, &udisp_screen) < 0)
         return -1;

@@ -8,6 +8,11 @@
 #include <stdint.h>
 #include <sys/stat.h>
 #include "usbdisp.h"
+#ifdef AIC_USB_DISP_NO_RODATA
+#include <dirent.h>
+#define UDISP_SD_VIDEO_DIR "/sdcard/video"
+#define UDISP_VIDEO_PATH_MAX 128
+#endif
 
 struct video_header {
     char magic[8];
@@ -20,6 +25,28 @@ struct video_index { uint32_t offset, size; };
 static FILE *file;
 static struct video_header header;
 static uint32_t frame_id, file_size;
+#ifdef AIC_USB_DISP_NO_RODATA
+static char video_path[UDISP_VIDEO_PATH_MAX];
+
+/* Pick any file from the SD card's /video directory as the idle clip.  There is
+ * no fixed filename, so scan for the first regular entry and remember it. */
+static int pick_sd_video(char *out, size_t out_sz)
+{
+    DIR *dir = opendir(UDISP_SD_VIDEO_DIR);
+    if (!dir) return -1;
+    for (;;) {
+        struct dirent *e = readdir(dir);
+        struct stat st;
+        if (!e) { closedir(dir); return -1; }
+        if (!strcmp(e->d_name, ".") || !strcmp(e->d_name, "..")) continue;
+        if (snprintf(out, out_sz, "%s/%s", UDISP_SD_VIDEO_DIR, e->d_name) >= (int)out_sz)
+            continue;
+        if (stat(out, &st) || !S_ISREG(st.st_mode)) continue;
+        closedir(dir);
+        return 0;
+    }
+}
+#endif
 
 void udisp_video_close(void)
 {
@@ -30,8 +57,17 @@ void udisp_video_close(void)
 int udisp_video_open(void)
 {
     struct stat st;
-    const char *path = "/rodata/video/video.bin";
+    const char *path;
     if (file) return 0;
+#ifdef AIC_USB_DISP_NO_RODATA
+    if (pick_sd_video(video_path, sizeof(video_path))) {
+        printf("usbdisp: no idle video in %s\n", UDISP_SD_VIDEO_DIR);
+        return -1;
+    }
+    path = video_path;
+#else
+    path = "/rodata/video/video.bin";
+#endif
     if (stat(path, &st) || st.st_size < sizeof(header)) return -1;
     file_size = st.st_size;
     file = fopen(path, "rb");

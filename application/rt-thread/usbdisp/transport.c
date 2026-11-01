@@ -29,7 +29,10 @@ static struct udisp_frame frames[UDISP_FRAME_COUNT];
 static struct udisp_frame *current;
 static uint32_t skip_remaining, sequence;
 static volatile bool configured;
-static struct usbd_interface vendor, hid, msc;
+static struct usbd_interface vendor, hid;
+#ifndef AIC_USB_DISP_NO_RODATA
+static struct usbd_interface msc;
+#endif
 static rt_device_t rodata_blk;
 static rt_uint32_t rodata_sectors;
 static uint8_t descriptor[512];
@@ -98,16 +101,24 @@ static void build_descriptors(void)
 {
     const uint8_t base[] = {
         USB_DEVICE_DESCRIPTOR_INIT(USB_2_0,0,0,0,0x303a,0x2987,0x0101,1),
+#ifdef AIC_USB_DISP_NO_RODATA
+        /* no-rodata (mipiPI) variants: the USB-MSC "assets" resource disk is
+         * disabled, so only the vendor + HID interfaces are enumerated. */
+        USB_CONFIG_DESCRIPTOR_INIT(57,2,1,USB_CONFIG_BUS_POWERED,100),
+#else
         USB_CONFIG_DESCRIPTOR_INIT(80,3,1,USB_CONFIG_BUS_POWERED,100),
+#endif
         USB_INTERFACE_DESCRIPTOR_INIT(0,0,2,0xff,0,0,4),
         USB_ENDPOINT_DESCRIPTOR_INIT(0x01,USB_ENDPOINT_TYPE_BULK,BULK_MPS,0),
         USB_ENDPOINT_DESCRIPTOR_INIT(0x81,USB_ENDPOINT_TYPE_BULK,BULK_MPS,0),
         USB_INTERFACE_DESCRIPTOR_INIT(1,0,1,3,0,0,5),
         USB_HID_DESCRIPTOR_INIT(0x0111,0,1,0x22,hid_report_size),
         USB_ENDPOINT_DESCRIPTOR_INIT(0x82,USB_ENDPOINT_TYPE_INTERRUPT,64,10),
+#ifndef AIC_USB_DISP_NO_RODATA
         USB_INTERFACE_DESCRIPTOR_INIT(2,0,2,8,6,0x50,6),
         USB_ENDPOINT_DESCRIPTOR_INIT(0x03,USB_ENDPOINT_TYPE_BULK,BULK_MPS,0),
         USB_ENDPOINT_DESCRIPTOR_INIT(0x83,USB_ENDPOINT_TYPE_BULK,BULK_MPS,0),
+#endif
         USB_LANGID_INIT(1033)
     };
     uint8_t *p = descriptor;
@@ -369,9 +380,13 @@ int usbd_msc_sector_write(uint8_t busid, uint8_t lun, uint32_t sector,
 
 int udisp_transport_start(void)
 {
-    struct rt_device_blk_geometry geom;
     int i;
     if (started) return 0;
+#ifndef AIC_USB_DISP_NO_RODATA
+    {
+    struct rt_device_blk_geometry geom;
+    /* On no-rodata (mipiPI) variants there is no rodata partition to expose;
+     * the MSC resource disk is disabled, so nothing needs blk_rodata here. */
     rodata_blk = rt_device_find("blk_rodata");
     if (!rodata_blk) return -1;
     rt_device_open(rodata_blk, RT_DEVICE_OFLAG_RDWR);
@@ -379,6 +394,8 @@ int udisp_transport_start(void)
     if (rt_device_control(rodata_blk, RT_DEVICE_CTRL_BLK_GETGEOME, &geom) == RT_EOK)
         rodata_sectors = geom.sector_count;
     if (!rodata_sectors) return -1;
+    }
+#endif
     for (i = 0; i < UDISP_FRAME_COUNT; i++) {
         frames[i].data = aicos_malloc_align(MEM_CMA, UDISP_FRAME_LIMIT, CACHE_LINE_SIZE);
         if (!frames[i].data) goto fail;
@@ -398,9 +415,11 @@ int udisp_transport_start(void)
     usbd_add_interface(0, usbd_hid_init_intf(0, &hid, hid_report, hid_report_size));
     hid_ep.ep_cb = touch_done;
     usbd_add_endpoint(0, &hid_ep);
+#ifndef AIC_USB_DISP_NO_RODATA
     usbd_add_interface(0, usbd_msc_init_intf(0, &msc, 0x03, 0x83));
     usbd_msc_set_readonly(0, true);
     usbd_msc_thread_init(0);
+#endif
     started = true;
     usbd_initialize(0, USB_DEV_BASE, event_handler);
     return 0;

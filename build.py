@@ -55,6 +55,32 @@ def variant_board_dir(variant):
     return variant.get('board_dir', 'display-nor')
 
 
+def variant_no_rodata(variant):
+    """mipiPI / SPI-NAND variants no longer carry an on-flash rodata resource
+    partition: the idle video comes from the SD card instead.  Such variants drop
+    the rodata partition from the packed image and skip the rodata FAT."""
+    return variant.get('no_rodata', False)
+
+
+def build_image_cfg(variant, out):
+    """Load target/<chip>/<board>/pack/image_cfg.json, prune the rodata
+    partition/target for no-rodata variants, and persist it for packing and for
+    the partition-table / file-list generators.  The same pruned cfg is what the
+    shared (per chip+board) bootloader reuses, so the bootloader also stops
+    reserving a rodata partition on those boards."""
+    chip = variant['chip']
+    board_dir = variant_board_dir(variant)
+    pack_dir = ROOT / 'target' / chip / board_dir / 'pack'
+    cfg = json.loads((pack_dir / 'image_cfg.json').read_text())
+    if variant_no_rodata(variant):
+        media = cfg['image']['info']['media']['type']
+        if media in cfg:
+            cfg[media]['partitions'].pop('rodata', None)
+        cfg['image']['target'].pop('rodata', None)
+    (out / 'image_cfg.json').write_text(json.dumps(cfg, indent=2) + '\n')
+    return cfg
+
+
 def pick_boot_variant(variants, chip, board_dir):
     """Pick the variant whose timing drives the shared bootloader's framebuffer.
 
@@ -105,8 +131,8 @@ def build_elf(graph_name, variant, jobs, output_name=None):
     out.mkdir(parents=True, exist_ok=True)
     config = configure(graph_name, variant, out)
     chip = variant['chip']
-    board_dir = variant_board_dir(variant)
-    image_cfg = ROOT / 'target' / chip / board_dir / 'pack/image_cfg.json'
+    build_image_cfg(variant, out)
+    image_cfg = out / 'image_cfg.json'
     helper('gen_partition_table.py', '-c', image_cfg, '-o', config / 'partition_table.h',
            '-j', out / 'partition.json')
     helper('gen_partition_file_list.py', '-c', image_cfg, '-o', out / 'partition_file_list.h')
@@ -179,7 +205,8 @@ def pack(variant_id, variant, out, config, boot_out):
     chip = variant['chip']
     board_dir = variant_board_dir(variant)
     pack_dir = ROOT / 'target' / chip / board_dir / 'pack'
-    cfg = json.loads((pack_dir / 'image_cfg.json').read_text())
+    # build_elf() already wrote the (for no-rodata variants, pruned) image cfg.
+    cfg = json.loads((out / 'image_cfg.json').read_text())
     media = cfg['image']['info']['media']['type']
     header = (boot_out / 'config/rtconfig.h').read_text()
     match = re.search(r'^#define AIC_BOOTLOADER_TEXT_BASE\s+(.+)$', header, re.M)
@@ -198,10 +225,11 @@ def pack(variant_id, variant, out, config, boot_out):
     shutil.copy2(pbp_cfg, out / 'pbp_cfg.json')
     for file in (ROOT / 'bsp/artinchip/sys' / chip).glob('*.pbp'):
         shutil.copy2(file, out / file.name)
-    assets_dir = variant_assets(variant)
-    helper('makefatfs.py', '--fullpart', '--volab', 'default', '--cluster', '8', '--sector', '512',
-           '--tooldir', str(TOOLS) + '/', '--inputdir', assets_dir,
-           '--outfile', out / 'rodata.fatfs', '--reserved', '50')
+    if not variant_no_rodata(variant):
+        assets_dir = variant_assets(variant)
+        helper('makefatfs.py', '--fullpart', '--volab', 'default', '--cluster', '8', '--sector', '512',
+               '--tooldir', str(TOOLS) + '/', '--inputdir', assets_dir,
+               '--outfile', out / 'rodata.fatfs', '--reserved', '50')
     if media == 'spi-nand':
         # The writable data partition is an NFTL volume; ship an empty FAT so
         # /data mounts and the app can create udisp.cfg at runtime. makefatfs
@@ -240,12 +268,15 @@ def verify_image(image_path, out, variant):
                 raise ValueError('Invalid image extent')
             components[name] = image[offset:offset+size]
     for name, file in [('image.target.rodata', 'rodata.fatfs'), ('image.target.spl', 'bootloader.aic')]:
+        if variant_no_rodata(variant) and name == 'image.target.rodata':
+            continue  # no-rodata variants carry no rodata partition/component
         if components[name] != (out / file).read_bytes():
             raise ValueError('Image component mismatch: ' + name)
-    with tempfile.TemporaryDirectory(prefix='udisp-check-') as temp:
-        run([TOOLS / 'mcopy.exe', '-i', out / 'rodata.fatfs', '::/video/video.bin', 'video.bin'], cwd=temp)
-        if sha(pathlib.Path(temp) / 'video.bin') != sha(ROOT / variant_assets(variant) / 'video/video.bin'):
-            raise ValueError('Packaged idle video mismatch')
+    if not variant_no_rodata(variant):
+        with tempfile.TemporaryDirectory(prefix='udisp-check-') as temp:
+            run([TOOLS / 'mcopy.exe', '-i', out / 'rodata.fatfs', '::/video/video.bin', 'video.bin'], cwd=temp)
+            if sha(pathlib.Path(temp) / 'video.bin') != sha(ROOT / variant_assets(variant) / 'video/video.bin'):
+                raise ValueError('Packaged idle video mismatch')
     cfg = json.loads((out / 'image_cfg.json').read_text())
     media = cfg['image']['info']['media']['type']
     if media not in cfg:

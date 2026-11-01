@@ -42,6 +42,17 @@ struct aic_pinmux aic_pinmux_config[] = {
     {8, PIN_PULL_UP, 3, "PB.17"},
 #endif
 #endif
+#if defined(AIC_USING_SDMC1) && defined(AIC_QSPI0_DEVICE_SPINAND)
+    /* SDMC1 (SD card) on the mipi-pi/SPI-NAND board: PC.0-PC.6.
+     * PC0=D1, PC1=D0, PC2=CLK, PC3=CMD, PC4=D3, PC5=D2, PC6=DET. */
+    {2, PIN_PULL_UP, 3, "PC.0"},
+    {2, PIN_PULL_UP, 3, "PC.1"},
+    {2, PIN_PULL_UP, 3, "PC.2"},
+    {2, PIN_PULL_UP, 3, "PC.3"},
+    {2, PIN_PULL_UP, 3, "PC.4"},
+    {2, PIN_PULL_UP, 3, "PC.5"},
+    {2, PIN_PULL_UP, 3, "PC.6"},
+#endif
 #ifdef AIC_DISP_MIPI_DSI
     /* D3, D2, CLK, D1 and D0 differential pairs, in PCB order. */
     {4, PIN_PULL_DIS, 3, "PD.18"},
