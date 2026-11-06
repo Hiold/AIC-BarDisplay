@@ -1,10 +1,10 @@
 [
   {
-    "variant": "d133-txw935003b",
-    "path": "images/d133-txw935003b.img",
-    "bytes": 22288384,
-    "sha256": "5a2bd92dfcee82f386f2717713cc81ae41d04010b28a3531650b75d7b7a3c9c0",
-    "width": 480,
+    "variant": "d133-mipipi-boe1126",
+    "path": "images/d133-mipipi-boe1126.img",
+    "bytes": 1343488,
+    "sha256": "e7d869b4b695136744999f2856bde0127a4074437ed915628dd62a2d2a47c18d",
+    "width": 440,
     "height": 1920
   }
 ]

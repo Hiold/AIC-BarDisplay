@@ -1,0 +1,22 @@
+﻿diff --git a/E:/001/lvgl-ui/ui/ebike/lv_demo_ebike_private.h b/E:/001/AIC-BarDisplay/application/rt-thread/usbdisp/ui/ebike/lv_demo_ebike_private.h
+index 1efe510..dd9d545 100644
+--- a/E:/001/lvgl-ui/ui/ebike/lv_demo_ebike_private.h
++++ b/E:/001/AIC-BarDisplay/application/rt-thread/usbdisp/ui/ebike/lv_demo_ebike_private.h
+@@ -1,4 +1,4 @@
+-﻿/**
++/**
+  * @file lv_demo_ebike_private.h
+  *
+  */
+@@ -58,6 +58,11 @@ lv_draw_buf_t * lv_demo_ebike_get_lottie_draw_buf(void);
+ /** Stores the current language */
+ extern lv_subject_t ebike_subject_language;
+ 
++/* eBike demo was written against a newer LVGL observer API than this bundle
++ * ships.  These two helpers are provided by ebike/lvgl_compat.c. */
++void * lv_observer_get_user_data(lv_observer_t * observer);
++void lv_subject_deinit(lv_subject_t * subject);
++
+ /**********************
+  *      MACROS
+  **********************/
