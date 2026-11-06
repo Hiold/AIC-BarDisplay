@@ -210,6 +210,46 @@
 #define LV_USE_TINY_TTF 0
 #endif
 
+/* USB-DISP "electric-motorcycle dashboard" (mipiPI boards): instead of the
+ * blank LVGL overlay, render the `lv_demo_ebike` Home page over the live idle
+ * background video.  Re-enables exactly the LVGL features the ebike demo
+ * needs (image/bar/roller/arc/label widgets, flex/grid layout, the simple
+ * theme and the observer subject system) that the APP_USB_DISP block above
+ * otherwise turned off.  Gated by AIC_USB_DISP_EBIKE_UI (set in the variant
+ * config header). */
+#if defined(AIC_USB_DISP_EBIKE_UI)
+#undef  LV_USE_DEMO_EBIKE
+#define LV_USE_DEMO_EBIKE 1
+#undef  LV_DEMO_EBIKE_PORTRAIT
+#define LV_DEMO_EBIKE_PORTRAIT 0
+#undef  LV_STDINT_INCLUDE
+#define LV_STDINT_INCLUDE <stdint.h>
+#undef  LV_USE_THEME_SIMPLE
+#define LV_USE_THEME_SIMPLE 1
+#undef  LV_USE_FLEX
+#define LV_USE_FLEX 1
+#undef  LV_USE_GRID
+#define LV_USE_GRID 1
+#undef  LV_USE_OBSERVER
+#define LV_USE_OBSERVER 1
+#undef  LV_USE_IMAGE
+#define LV_USE_IMAGE 1
+#undef  LV_USE_BAR
+#define LV_USE_BAR 1
+#undef  LV_USE_ROLLER
+#define LV_USE_ROLLER 1
+#undef  LV_USE_ARC
+#define LV_USE_ARC 1
+#undef  LV_USE_LABEL
+#define LV_USE_LABEL 1
+#undef  LV_USE_SWITCH
+#define LV_USE_SWITCH 1
+#undef  LV_USE_BUTTONMATRIX
+#define LV_USE_BUTTONMATRIX 1
+#undef  LV_USE_SPINNER
+#define LV_USE_SPINNER 1
+#endif
+
 /* 电摩仪表应用：整机只做仪表，全屏 Canvas（ARGB8888）绘制。
  * 复用本仓库引入的上游 LVGL 9.1 lv_canvas.c；widget 配置与 APP_USB_DISP
  * 保持一致（该组合已实测可编译），仅额外开启 CANVAS（需 IMAGE/LABEL）。 */

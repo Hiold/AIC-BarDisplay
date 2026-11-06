@@ -1536,6 +1536,18 @@
       "cpppath": []
     },
     {
+      "source": "${ROOT}/packages/artinchip/lvgl-ui/lvgl_v9/lvgl/src/layouts/flex/lv_flex.c",
+      "defines": [],
+      "cflags": " ",
+      "cpppath": []
+    },
+    {
+      "source": "${ROOT}/packages/artinchip/lvgl-ui/lvgl_v9/lvgl/src/layouts/grid/lv_grid.c",
+      "defines": [],
+      "cflags": " ",
+      "cpppath": []
+    },
+    {
       "source": "${ROOT}/packages/artinchip/lvgl-ui/lvgl_v9/lvgl/src/libs/bin_decoder/lv_bin_decoder.c",
       "defines": [],
       "cflags": " ",
@@ -1735,6 +1747,30 @@
     },
     {
       "source": "${ROOT}/packages/artinchip/lvgl-ui/lvgl_v9/lvgl/src/widgets/arc/lv_arc.c",
+      "defines": [],
+      "cflags": " ",
+      "cpppath": []
+    },
+    {
+      "source": "${ROOT}/packages/artinchip/lvgl-ui/lvgl_v9/lvgl/src/widgets/bar/lv_bar.c",
+      "defines": [],
+      "cflags": " ",
+      "cpppath": []
+    },
+    {
+      "source": "${ROOT}/packages/artinchip/lvgl-ui/lvgl_v9/lvgl/src/widgets/image/lv_image.c",
+      "defines": [],
+      "cflags": " ",
+      "cpppath": []
+    },
+    {
+      "source": "${ROOT}/packages/artinchip/lvgl-ui/lvgl_v9/lvgl/src/widgets/roller/lv_roller.c",
+      "defines": [],
+      "cflags": " ",
+      "cpppath": []
+    },
+    {
+      "source": "${ROOT}/packages/artinchip/lvgl-ui/lvgl_v9/lvgl/src/themes/simple/lv_theme_simple.c",
       "defines": [],
       "cflags": " ",
       "cpppath": []
@@ -2077,6 +2113,66 @@
     },
     {
       "source": "${ROOT}/application/rt-thread/usbdisp/ui.c",
+      "defines": [],
+      "cflags": "",
+      "cpppath": []
+    },
+    {
+      "source": "${ROOT}/application/rt-thread/usbdisp/ui/uires_res.c",
+      "defines": [],
+      "cflags": "",
+      "cpppath": []
+    },
+    {
+      "source": "${ROOT}/application/rt-thread/usbdisp/ui/ebike/lv_demo_ebike.c",
+      "defines": [],
+      "cflags": "",
+      "cpppath": []
+    },
+    {
+      "source": "${ROOT}/application/rt-thread/usbdisp/ui/ebike/lv_demo_ebike_home.c",
+      "defines": [],
+      "cflags": "",
+      "cpppath": []
+    },
+    {
+      "source": "${ROOT}/application/rt-thread/usbdisp/ui/ebike/lvgl_compat.c",
+      "defines": [],
+      "cflags": "",
+      "cpppath": []
+    },
+    {
+      "source": "${ROOT}/application/rt-thread/usbdisp/ui/ebike/ebike_assets.c",
+      "defines": [],
+      "cflags": "",
+      "cpppath": []
+    },
+    {
+      "source": "${ROOT}/application/rt-thread/usbdisp/ui/ebike/translations/lv_i18n.c",
+      "defines": [],
+      "cflags": "",
+      "cpppath": []
+    },
+    {
+      "source": "${ROOT}/application/rt-thread/usbdisp/ui/ebike/fonts/font_ebike_130.c",
+      "defines": [],
+      "cflags": "",
+      "cpppath": []
+    },
+    {
+      "source": "${ROOT}/application/rt-thread/usbdisp/ui/ebike/fonts/font_ebike_inter_14.c",
+      "defines": [],
+      "cflags": "",
+      "cpppath": []
+    },
+    {
+      "source": "${ROOT}/application/rt-thread/usbdisp/ui/ebike/fonts/font_ebike_trump_24.c",
+      "defines": [],
+      "cflags": "",
+      "cpppath": []
+    },
+    {
+      "source": "${ROOT}/application/rt-thread/usbdisp/ui/ebike/fonts/font_ebike_trump_48.c",
       "defines": [],
       "cflags": "",
       "cpppath": []

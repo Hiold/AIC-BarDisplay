@@ -34,10 +34,28 @@ static size_t res_data_size(uint32_t stride, uint32_t h, lv_color_format_t cf)
 
 lv_draw_buf_t * uires_res_load(const char * lv_path)
 {
-    /* LVGL POSIX 盘 "L:" 的根是 DFS 根（LV_FS_POSIX_PATH ""），剥掉盘符即可
-     * 直接用 stdio（DFS elm 文件系统）读取。 */
-    const char * posix_path = (lv_path[0] != '\0' && lv_path[1] == ':')
-                                  ? lv_path + 2 : lv_path;
+    /* The LVGL POSIX drive "L:" maps to a directory that differs between
+     * board builds (see LVGL_STORAGE_PATH in the variant config header):
+     *  - rodata (SPI-NOR/NAND) builds: the read-only "uires" directory, and
+     *    gen_ebike_resbin.py packs the .bin files there.
+     *  - mipiPI no-rodata builds: the SD card tree under /sdcard/lvgl_data.
+     * "L:/xxx.bin" therefore must be resolved to a host stdio path inside that
+     * tree.  A non-drive path (already "/...") is used verbatim. */
+    char buf[256];
+    const char * posix_path;
+    if(lv_path[0] != '\0' && lv_path[1] == ':') {
+        const char * tail = lv_path + 2;      /* skip "L:" */
+#ifdef AIC_USB_DISP_NO_RODATA
+        /* SD card backed; LVGL drive root == /sdcard/lvgl_data */
+        int n = snprintf(buf, sizeof(buf), "%s/%s", LVGL_STORAGE_PATH, tail);
+#else
+        int n = snprintf(buf, sizeof(buf), "uires%s", tail);
+#endif
+        if(n < 0 || n >= (int)sizeof(buf)) return NULL;
+        posix_path = buf;
+    } else {
+        posix_path = lv_path;
+    }
     lv_image_header_t hdr;
 
     FILE * f = fopen(posix_path, "rb");
@@ -65,11 +83,20 @@ lv_draw_buf_t * uires_res_load(const char * lv_path)
      * 异常（实测崩在 memheap.c:264）。 */
     size_t alloc_size = size + (LV_DRAW_BUF_ALIGN - 1);
 
-    /* 像素数据：小图先试 SRAM 堆，失败/大图走 CMA 堆 */
+    /* 像素数据：小图先试一个小的软件堆，失败/大图走 CMA 堆。
+     * 小堆存在性随板级差异：D12x 用 SRAM0-SW，D13x/mipiPI 用 PSRAM-SW。
+     * 注意 MEM_SRAM0_SW 枚举仅在 !AIC_DEFAULT_SYS_HEAP_SRAM 时被 aic_common.h
+     * 定义，否则它已被用作系统堆，不能重复申请。 */
     void * data = NULL;
     int heap_type = -1;
-#ifdef AIC_SRAM0_SW_EN
+#ifdef AIC_PSRAM_SW_EN
     if(size <= UIRES_SRAM_MAX) {
+        data = aic_memheap_malloc(MEM_PSRAM_SW, alloc_size);
+        if(data) heap_type = MEM_PSRAM_SW;
+    }
+#endif
+#if defined(AIC_SRAM0_SW_EN) && !defined(AIC_DEFAULT_SYS_HEAP_SRAM)
+    if(!data && size <= UIRES_SRAM_MAX) {
         data = aic_memheap_malloc(MEM_SRAM0_SW, alloc_size);
         if(data) heap_type = MEM_SRAM0_SW;
     }

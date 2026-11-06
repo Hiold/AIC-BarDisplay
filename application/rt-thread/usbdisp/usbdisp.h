@@ -14,7 +14,15 @@
 #define UDISP_JPEG_QUALITY FIRMWARE_JPEG_QUALITY
 #define UDISP_MAX_FPS FIRMWARE_MAX_FPS
 #define UDISP_PRESENT_PERIOD_MS 17
+/* The idle + USB paths reuse the RX slots as the JPEG *input* buffer.  On the
+ * ebike-dashboard (mipiPI) build the USB-JPEG host stream is not the focus, so
+ * keep a single slot to release one 300 KB CMA buffer for the ebike resource
+ * images. */
+#ifdef AIC_USB_DISP_EBIKE_UI
+#define UDISP_FRAME_COUNT 1
+#else
 #define UDISP_FRAME_COUNT 2
+#endif
 #define UDISP_COUNTDOWN_MS 3000U
 #define UDISP_UI_WIDTH 400
 #define UDISP_UI_HEIGHT 480

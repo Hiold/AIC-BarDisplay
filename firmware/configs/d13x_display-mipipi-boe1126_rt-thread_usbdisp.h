@@ -24,6 +24,11 @@
 
 #define APP_USB_DISP
 
+/* Electric-motorcycle dashboard UI: render the LVGL `lv_demo_ebike` Home page
+ * over the live idle background video (see lv_conf.h + usbdisp/ui/ebike).  For
+ * the mipiPI boards the board frees the USB JPEG RX path for this overlay. */
+#define AIC_USB_DISP_EBIKE_UI
+
 /* Filesystem related */
 
 /* mipiPI / SPI-NAND variant: no on-flash rodata resource partition. The idle
